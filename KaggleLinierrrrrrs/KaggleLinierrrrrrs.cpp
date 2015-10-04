@@ -3,54 +3,73 @@
 
 #include "stdafx.h"
 
-std::string ID;
-std::string nome;
-std::string idade;
-std::string genero;
+std::vector<std::string> splitStringMatchingARegex(const std::string & s, std::string rgx_str = "\\s+") {
+
+
+      std::vector<std::string> elems;
+
+      std::regex rgx (rgx_str);
+
+      std::sregex_token_iterator iter(s.begin(), s.end(), rgx, -1);
+      std::sregex_token_iterator end;
+
+      while (iter != end)  {
+          //std::cout << "S43:" << *iter << std::endl;
+          elems.push_back(*iter);
+          ++iter;
+      }
+
+      return elems;
+
+}
+
+void printVectorValues(std::vector<std::string> valuesVector) {
+	for (std::string field : valuesVector) {
+		std::cout << "value : " << field << std::endl;
+	}
+
+	std::cout << "Finished reading vector." << std::endl;
+}
 
 int main()
 {
 
 	//Line eg: 2015-05-13 23:53:00,WARRANTS,WARRANT ARREST,Wednesday,NORTHERN,"ARREST, BOOKED",OAK ST / LAGUNA ST,-122.425891675136,37.7745985956747
 
-	/*
+	//Regex for parsing. This looks for commas ONLY IF there´s an even number of " after it. This means that if there is only 1 comma it wont parse, else if there is 0,2... it will. (since "Arrest, BOOKED" is one field and if not considering this it would be 2.
+	std::string regex = ",(?=([^\"]*\"[^\"]*\")*[^\"]*$)";
+	
 	//This should be done to get the whole csv. We should create an object and go storing them bla bla ya lo pensamos todo esto.
 	std::ifstream file(R"(C:\Users\Saantii\Desktop\Kagle\train.csv\train.csv)"); //http://en.cppreference.com/w/cpp/language/string_literal for R as raw delimiter
+	int i = 0; //Just for testing purposes. dont want to be iterating infinite times.
 
-	while (file.good()) {
+	if (file.good()) {
 
-		std::getline(file, ID, ',');
-		std::cout << "ID: " << ID << " ";
+		std::string currentLine;
 
-		std::getline(file, nome, ',');
-		std::cout << "User: " << nome << " ";
+		while ( std::getline(file, currentLine) && i<5) {
+			std::vector<std::string> splittedString = splitStringMatchingARegex(currentLine, regex);
 
-		std::getline(file, idade, ',');
-		std::cout << "Idade: " << idade << " ";
+			printVectorValues(splittedString);
 
-		std::getline(file, genero); // diff
-		std::cout << "Sexo: " << genero; //diff
+			i++;
+		}
 	}
-	*/ //TODO uncomment this. Just commented because im showing an example of how to parse a single csv line. this should still work (i guess, im sleepy)
-
+	/*
 	//---------------------------------------------------------------------------------------------TEST-------------------------------------------------------------------------------
 
 	//Example line for parsing
-	char line[] = "2015-05-13 23:53:00,WARRANTS,WARRANT ARREST,Wednesday,NORTHERN,\"ARREST, BOOKED\",OAK ST / LAGUNA ST,-122.425891675136,37.7745985956747";
+	std::string line = "2015-05-13 23:53:00,WARRANTS,WARRANT ARREST,Wednesday,NORTHERN,\"ARREST, BOOKED\",OAK ST / LAGUNA ST,-122.425891675136,37.7745985956747";
 	//Regex for parsing. This looks for commas ONLY IF there´s an even number of " after it. This means that if there is only 1 comma it wont parse, else if there is 0,2... it will. (since "Arrest, BOOKED" is one field and if not considering this it would be 2.
-	char regex[] = ",(?=(?:[^']*'[^']*')*[^']*$)";
-	//Hold a reference for the next token
-	char *nextToken = NULL;
+	std::string regex = ",(?=([^\"]*\"[^\"]*\")*[^\"]*$)";
 	
 	//Split the string in a set of tokens 
-	char* tokens = strtok_s(line, regex, &nextToken);
-	while (tokens != NULL) { //Iterate on them and print
-		std::cout << tokens << std::endl;
-
-		tokens = strtok_s(NULL, regex, &nextToken);
-	}
+	std::vector<std::string> splittedString = splitStringMatchingARegex(line, regex);
+	printVectorValues(splittedString);
 
 	//Pause the console (ask for a char)
+	*/
+
 	std::cin.get();
 
     return 0;
