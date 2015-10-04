@@ -37,6 +37,7 @@ int main()
 	//Line eg: 2015-05-13 23:53:00,WARRANTS,WARRANT ARREST,Wednesday,NORTHERN,"ARREST, BOOKED",OAK ST / LAGUNA ST,-122.425891675136,37.7745985956747
 
 	//Regex for parsing. This looks for commas ONLY IF there´s an even number of " after it. This means that if there is only 1 comma it wont parse, else if there is 0,2... it will. (since "Arrest, BOOKED" is one field and if not considering this it would be 2.
+	//Information about regex (used for this): https://msdn.microsoft.com/en-us/library/f97kw5ka.aspx?f=255&MSPPError=-2147217396 & https://msdn.microsoft.com/en-us/library/bb982727.aspx?f=255&MSPPError=-2147217396
 	std::string regex = ",(?=([^\"]*\"[^\"]*\")*[^\"]*$)";
 	
 	//This should be done to get the whole csv. We should create an object and go storing them bla bla ya lo pensamos todo esto.
