@@ -30,6 +30,12 @@
     <ClInclude Include="PDCrimeParser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CrimeParserManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Parcel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -42,6 +48,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PDCrimeParser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CrimeParserManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Parcel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -23,4 +23,7 @@
 #define kMinLongitude -122.3568150000000
 #define kMaxLongitude -122.5153430000000
 
+#define kSanFranciscoMatrixRowNumber 8
+#define kSanFranciscoMatrixColNumber 2
+
 // TODO: reference additional headers your program requires here

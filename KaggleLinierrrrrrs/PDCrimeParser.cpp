@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "PDCrimeParser.h"
 #include "Crime.h"
+#include "CrimeParserManager.h"
 
 #define rgxCsv ",(?=([^\"]*\"[^\"]*\")*[^\"]*$)"
 
@@ -55,7 +56,7 @@ Crime* PDCrimeParser::createCrimeFromCSVChunk(const std::string & dataChunk) {
 	return new Crime(date, category, descript, dayOfWeek, pdDistrict, resolution, address, longitude, latitude);
 }
 
-bool PDCrimeParser::readFile()
+bool PDCrimeParser::readFileWithManager(CrimeParserManager crimeParserManager)
 {
 	//This should be done to get the whole csv. We should create an object and go storing them bla bla ya lo pensamos todo esto.
 	//http://en.cppreference.com/w/cpp/language/string_literal for R as raw delimiter
@@ -75,9 +76,10 @@ bool PDCrimeParser::readFile()
 		std::getline(file, currentLine);
 
 		//Iterate over each line of the file (and, for testing purposes, only the first 5 of them)
-		while (std::getline(file, currentLine) && i<5) {
+		while (std::getline(file, currentLine) && i<20) {
 			//create a Crime from the chunk we init before and print the values we got.
 			Crime* crime = createCrimeFromCSVChunk(currentLine);
+			crimeParserManager.addCrimeToMatrix(*crime);
 
 			crime->printValues();
 
