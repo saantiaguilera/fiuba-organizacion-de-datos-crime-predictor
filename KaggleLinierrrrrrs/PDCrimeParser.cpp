@@ -83,7 +83,7 @@ bool PDCrimeParser::readFile()
 
 			i++;
 		}
-	} else return 1;
+	} else return false;
 
-	return 0;
+	return true;
 }

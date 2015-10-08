@@ -10,5 +10,4 @@ public:
 	bool readFile();
 private:
 	Crime* createCrimeFromCSVChunk(const std::string & dataChunk);
-	void printVectorValues(std::vector<std::string> valuesVector);
 };
