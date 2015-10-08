@@ -1,9 +1,15 @@
 // KaggleLinierrrrrrs.cpp : Defines the entry point for the console application.
 
 #include "stdafx.h"
-#include "Parser.h"
+#include "PDCrimeParser.h"
 
 int main() {
-	Parser *parser = new Parser;
-	return parser->readFile();
+	PDCrimeParser *parser = new PDCrimeParser();
+	parser->readFile();
+
+	delete parser;
+
+	std::cin.get();
+
+	return 0;
 }
