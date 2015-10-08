@@ -24,7 +24,7 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Parser.h">
+    <ClInclude Include="PDCrimeParser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Crime.h">
@@ -38,7 +38,7 @@
     <ClCompile Include="KaggleLinierrrrrrs.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Parser.cpp">
+    <ClCompile Include="PDCrimeParser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Crime.cpp">
