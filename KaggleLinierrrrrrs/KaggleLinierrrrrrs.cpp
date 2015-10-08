@@ -3,7 +3,10 @@
 #include "stdafx.h"
 #include "Parser.h"
 
+
+
 int main() {
 	Parser *parser = new Parser;
+	delete parser;
 	return parser->readFile();
 }

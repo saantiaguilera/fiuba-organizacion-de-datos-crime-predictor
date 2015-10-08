@@ -28,6 +28,40 @@ std::vector<std::string> Parser::splitStringMatchingARegex(const std::string & s
 	//Since I cant do a iter != NULL I create a NULL var of it.
 	std::sregex_token_iterator end;
 
+	Crime *crime = new Crime;
+	crime->date = *iter;
+	++iter;
+	crime->category = *iter;
+	++iter;
+	crime->descript = *iter;
+	++iter;
+	crime->dayOfWeek = *iter;
+	++iter;
+	crime->pdDistrict = *iter;
+	++iter;
+	crime->resolution = *iter;
+	++iter;
+	crime->address = *iter;
+	++iter;
+	crime->latitude = std::stod(*iter);
+	++iter;
+	crime->longitude = std::stod(*iter);
+
+	
+
+	std::cout << "valor: " << crime->date << std::endl;
+	std::cout << "valor: " << crime->category << std::endl;
+	std::cout << "valor: " << crime->descript << std::endl;
+	std::cout << "valor: " << crime->dayOfWeek << std::endl;
+	std::cout << "valor: " << crime->pdDistrict << std::endl;
+	std::cout << "valor: " << crime->resolution << std::endl;
+	std::cout << "valor: " << crime->address << std::endl;
+	std::cout << "valor: " << crime->latitude << std::endl;
+	std::cout << std::setprecision(20) << crime->latitude << std::endl;
+	std::cout << "valor: " << crime->longitude << std::endl;
+
+	delete crime;
+
 	while (iter != end) {
 		//Add elements to vector and move iterator
 		elems.push_back(*iter);
@@ -54,6 +88,7 @@ bool Parser::readFile()
 
 	//Just for testing purposes. dont want to be iterating infinite times now. Should be removed (and everything about i).
 	int i = 0;
+	bool isFirstLine = true;
 
 	//If the file is malformed, doesnt exists, by some reason its not available for reading or whatsoever, return 1.
 	if (file.good()) {
@@ -61,12 +96,20 @@ bool Parser::readFile()
 		std::string currentLine;
 
 		//Iterate over each line of the file (and, for testing purposes, only the first 5 of them)
-		while (std::getline(file, currentLine) && i<5) {
-			//Split them using the regex we init before and print the values we got.
-			std::vector<std::string> splittedString = splitStringMatchingARegex(currentLine, regex);
+		while (std::getline(file, currentLine) && i<2) {
 
-			printVectorValues(splittedString);
+			if (!isFirstLine)
+			{
+				//Split them using the regex we init before and print the values we got.
+				std::vector<std::string> splittedString = splitStringMatchingARegex(currentLine, regex);
 
+				printVectorValues(splittedString);
+			}
+			else
+			{
+				isFirstLine = false;
+			}
+			
 			i++;
 		}
 	}
