@@ -24,10 +24,10 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PDCrimeParser.h">
+    <ClInclude Include="Crime.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Crime.h">
+    <ClInclude Include="PDCrimeParser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -38,10 +38,10 @@
     <ClCompile Include="KaggleLinierrrrrrs.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PDCrimeParser.cpp">
+    <ClCompile Include="Crime.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Crime.cpp">
+    <ClCompile Include="PDCrimeParser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

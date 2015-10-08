@@ -6,7 +6,7 @@ class Crime {
 private:
 	//Fields: Dates,Category,Descript,DayOfWeek,PdDistrict,Resolution,Address,X,Y
 	std::string mDate; //In the future this should be a date?
-	std::string mCategory; 
+	std::string mCategory;
 	std::string mDescript;
 	std::string mDayOfWeek;
 	std::string mPDDistrict;

@@ -61,7 +61,7 @@ bool PDCrimeParser::readFile()
 	//http://en.cppreference.com/w/cpp/language/string_literal for R as raw delimiter
 	//Chano route: (C:\Chano\train.csv)
 	//Santia route: (C:\Users\Saantii\Desktop\Kagle\train.csv\train.csv)
-	std::ifstream file(R"(C:\Users\Saantii\Desktop\Kagle\train.csv\train.csv)");
+    std::ifstream file(R"(C:\Chano\train.csv)");
 
 	//Just for testing purposes. dont want to be iterating infinite times now. Should be removed (and everything about i).
 	int i = 0;
@@ -83,6 +83,7 @@ bool PDCrimeParser::readFile()
 
 			i++;
 		}
+
 	} else return false;
 
 	return true;
