@@ -3,7 +3,7 @@
 
 Parcel::Parcel()
 {
-
+	std::vector<Crime> crimes;
 }
 
 Parcel::~Parcel()

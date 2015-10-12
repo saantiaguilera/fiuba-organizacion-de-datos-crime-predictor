@@ -16,6 +16,7 @@ std::sregex_token_iterator end;
 
 PDCrimeParser::PDCrimeParser()
 {
+	numberTotalOfCrimes = 0;
 }
 
 PDCrimeParser::~PDCrimeParser()
@@ -76,15 +77,16 @@ bool PDCrimeParser::readFileWithManager(CrimeParserManager crimeParserManager)
 		std::getline(file, currentLine);
 
 		//Iterate over each line of the file (and, for testing purposes, only the first 5 of them)
-		while (std::getline(file, currentLine) && i<20) {
+		while (std::getline(file, currentLine) && (i < 100)) {
 			//create a Crime from the chunk we init before and print the values we got.
 			Crime* crime = createCrimeFromCSVChunk(currentLine);
 			crimeParserManager.addCrimeToMatrix(*crime);
 
-			crime->printValues();
+			//crime->printValues();
 
 			i++;
 		}
+		numberTotalOfCrimes = i;
 
 	} else return false;
 

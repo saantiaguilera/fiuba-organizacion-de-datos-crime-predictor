@@ -10,10 +10,14 @@ int main() {
 	PDCrimeParser *parser = new PDCrimeParser();
 	parser->readFileWithManager(*crimeParserManager);
 
-	delete parser;
-	delete crimeParserManager;
+	std::cout << "numero total de crimenes " << parser->numberTotalOfCrimes << std::endl;
+	std::cout << "numero de crimenes ingresados a la matriz " << crimeParserManager->numberOfCrimesAddedToMatrix << std::endl;
+	std::cout << "numero de crimenes por fuera de San Francisco (coordenadas invalidas)" << crimeParserManager->numberOfCrimesOutOfMatrix << std::endl;
 
 	std::cin.get();
+
+	delete parser;
+	delete crimeParserManager;
 
 	return 0;
 }
