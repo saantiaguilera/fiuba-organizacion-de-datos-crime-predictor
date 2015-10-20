@@ -7,16 +7,14 @@ private:
 	
 public:
 	Crime();
-	Crime(std::string date, std::string category, std::string descript, std::string dayOfWeek, std::string pdDistrict, std::string resolution, std::string address, double longitude, double latitude);
+	Crime(std::string date, std::string hour, std::string category, std::string dayOfWeek, std::string address, double longitude, double latitude);
 	~Crime();
 	void printValues();
-	//Fields: Dates,Category,Descript,DayOfWeek,PdDistrict,Resolution,Address,X,Y
+	//Fields: "date" "hour" "Category" "DayOfWeek" "Address" "X" "Y"
 	std::string mDate; //In the future this should be a date?
+	std::string mHour;
 	std::string mCategory;
-	std::string mDescript;
 	std::string mDayOfWeek;
-	std::string mPDDistrict;
-	std::string mResolution;
 	std::string mAdress;
 	double mLatitude;
 	double mLongitude;

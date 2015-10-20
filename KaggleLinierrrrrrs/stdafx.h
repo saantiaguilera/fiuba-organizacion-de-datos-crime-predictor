@@ -8,15 +8,12 @@
 #include "targetver.h"
 
 #include <stdio.h>
-#include <tchar.h>
 #include <fstream>
 #include <string>
 #include <iostream>
 #include <istream>
-#include <iomanip>
 #include <vector>
 #include <sstream>
-#include <regex>
 
 #define kMinLatitude 37.7074870000000
 #define kMaxLatitude 37.8126370000000
@@ -26,4 +23,8 @@
 #define kSanFranciscoMatrixRowNumber 8
 #define kSanFranciscoMatrixColNumber 2
 
-// TODO: reference additional headers your program requires here
+//Things to be removed when app is done:
+/*
+- Counters for crimes in matrix - CrimeParserManager.h
+- Total counter for crimes (i) - PDCrimeParser.cpp
+*/
