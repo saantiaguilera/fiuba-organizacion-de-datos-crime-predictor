@@ -6,6 +6,7 @@
 PDCrimeParser::PDCrimeParser()
 {
 	numberTotalOfCrimes = 0;
+
 	monday = 0;
 	tuesday = 0;
 	wednesday = 0;
@@ -13,6 +14,7 @@ PDCrimeParser::PDCrimeParser()
 	friday = 0;
 	saturday = 0;
 	sunday = 0;
+
 	workingDuty = 0;
 	offDuty = 0;
 }
@@ -110,6 +112,7 @@ bool PDCrimeParser::readFileWithManager(CrimeParserManager& crimeParserManager)
 
 			i++;
 		}
+
 		numberTotalOfCrimes = i;
 
 	} else return false;

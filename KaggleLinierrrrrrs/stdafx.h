@@ -23,8 +23,3 @@
 #define kSanFranciscoMatrixRowNumber 8
 #define kSanFranciscoMatrixColNumber 2
 
-//Things to be removed when app is done:
-/*
-- Counters for crimes in matrix - CrimeParserManager.h
-- Total counter for crimes (i) - PDCrimeParser.cpp
-*/
