@@ -6,6 +6,15 @@
 PDCrimeParser::PDCrimeParser()
 {
 	numberTotalOfCrimes = 0;
+	monday = 0;
+	tuesday = 0;
+	wednesday = 0;
+	thursday = 0;
+	friday = 0;
+	saturday = 0;
+	sunday = 0;
+	workingDuty = 0;
+	offDuty = 0;
 }
 
 PDCrimeParser::~PDCrimeParser()
@@ -34,7 +43,41 @@ Crime* PDCrimeParser::createCrimeFromCSVChunk(const std::string & dataChunk) {
 	std::getline(aux, address, ',');
 	std::getline(aux, x, ',');
 	std::getline(aux, y, ',');
-	
+
+	std::size_t found = dayOfWeek.find("Monday");
+	if (found != std::string::npos)
+		monday++;
+
+	found = dayOfWeek.find("Tuesday");
+	if (found != std::string::npos)
+		tuesday++;
+
+	found = dayOfWeek.find("Wednesday");
+	if (found != std::string::npos)
+		wednesday++;
+
+	found = dayOfWeek.find("Thursday");
+	if (found != std::string::npos)
+		thursday++;
+
+	found = dayOfWeek.find("Friday");
+	if (found != std::string::npos)
+		friday++;
+
+	found = dayOfWeek.find("Saturday");
+	if (found != std::string::npos)
+		saturday++;
+
+	found = dayOfWeek.find("Sunday");
+	if (found != std::string::npos)
+		sunday++;
+
+	std::string onlyHour = hour.substr(1, 2);
+
+	if (std::stoi(onlyHour) < 18 && std::stoi(onlyHour) >= 9)
+		workingDuty++;
+	else offDuty++;
+
 	return new Crime(date, hour, category, dayOfWeek, address, std::stod(x), std::stod(y));
 }
 
