@@ -2,6 +2,7 @@
 
 #include "stdafx.h"
 #include "Crime.h"
+#include <map>
 
 class Parcel {
 private:
@@ -10,4 +11,6 @@ public:
 	Parcel();
 	~Parcel();
 	void addCrime(Crime* crime);
+	void getCrimesCategoryCount();
+	std::map<std::string, int> crimesCountMap;
 };
