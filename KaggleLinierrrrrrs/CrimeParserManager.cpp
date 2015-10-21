@@ -3,7 +3,7 @@
 
 CrimeParserManager::CrimeParserManager()
 {
-	std::vector<std::vector<Parcel>> matrix(kSanFranciscoMatrixRowNumber, std::vector<Parcel>(kSanFranciscoMatrixColNumber));
+	std::vector<std::vector<Parcel*>> matrix(kSanFranciscoMatrixRowNumber, std::vector<Parcel*>(kSanFranciscoMatrixColNumber));
 	//Both vars for testing purpose only,  remove when done.
 	numberOfCrimesAddedToMatrix = 0;
 	numberOfCrimesOutOfMatrix = 0;
@@ -11,7 +11,7 @@ CrimeParserManager::CrimeParserManager()
 
 CrimeParserManager::~CrimeParserManager()
 {
-	
+
 }
 
 void CrimeParserManager::addCrimeToMatrix(Crime* crime)
@@ -25,7 +25,7 @@ void CrimeParserManager::addCrimeToMatrix(Crime* crime)
 		long double cellWidthLongitude = (kMaxLongitude - kMinLongitude) / kSanFranciscoMatrixColNumber;
 		int rowIndex = (int)(longitude / cellWidthLongitude);
 
-		matrix[rowIndex][colIndex].addCrime(crime);
+		matrix[rowIndex][colIndex]->addCrime(crime);
 	}
 }
 
@@ -38,5 +38,4 @@ bool CrimeParserManager::coordinateIsValidForCrime(Crime* crime)
 	
 	numberOfCrimesOutOfMatrix++;
 	return false;
-	
 }

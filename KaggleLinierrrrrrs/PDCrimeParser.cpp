@@ -83,7 +83,7 @@ Crime* PDCrimeParser::createCrimeFromCSVChunk(const std::string & dataChunk) {
 	return new Crime(date, hour, category, dayOfWeek, address, std::stod(x), std::stod(y));
 }
 
-bool PDCrimeParser::readFileWithManager(CrimeParserManager& crimeParserManager)
+bool PDCrimeParser::readFileWithManager(CrimeParserManager* crimeParserManager)
 {
 
 	//Ahora ya esta adentro del proyecto. nombre "importantTrain.csv"
@@ -105,7 +105,7 @@ bool PDCrimeParser::readFileWithManager(CrimeParserManager& crimeParserManager)
 			//create a Crime from the chunk we init before and print the values we got.
 			Crime* crime = createCrimeFromCSVChunk(currentLine);
 
-			crimeParserManager.addCrimeToMatrix(crime);
+			crimeParserManager -> addCrimeToMatrix(crime);
 
 			//Uncomment if you want to see the descript of a Crime (beware, reduce the index of i<VALUE.
 			//crime->printValues();

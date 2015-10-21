@@ -8,7 +8,7 @@ int main() {
 	CrimeParserManager *crimeParserManager = new CrimeParserManager();
 
 	PDCrimeParser *parser = new PDCrimeParser();
-	parser->readFileWithManager(*crimeParserManager);
+	parser->readFileWithManager(crimeParserManager);
 
 	std::cout << "##################################################" << std::endl;
 	std::cout << "##################################################" << std::endl;

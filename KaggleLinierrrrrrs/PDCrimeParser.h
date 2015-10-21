@@ -8,7 +8,7 @@ class PDCrimeParser
 public:
 	PDCrimeParser();
 	~PDCrimeParser();
-	bool PDCrimeParser::readFileWithManager(CrimeParserManager &crimeParserManager);
+	bool PDCrimeParser::readFileWithManager(CrimeParserManager* crimeParserManager);
 	 int numberTotalOfCrimes;
 	 int workingDuty, offDuty;
 	 int monday, tuesday, wednesday, thursday, friday, saturday, sunday;
