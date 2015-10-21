@@ -25,7 +25,7 @@ void CrimeParserManager::addCrimeToMatrix(Crime* crime)
 		long double cellWidthLongitude = (kMaxLongitude - kMinLongitude) / kSanFranciscoMatrixColNumber;
 		int rowIndex = (int)(longitude / cellWidthLongitude);
 
-		matrix[rowIndex][colIndex]->addCrime(crime);
+		matrix[rowIndex][colIndex].addCrime(crime);
 	}
 }
 
