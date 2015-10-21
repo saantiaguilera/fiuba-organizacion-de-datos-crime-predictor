@@ -6,10 +6,8 @@ Parcel::Parcel(){
 
 Parcel::~Parcel()
 {
-	for (int i = 0; i < crimes.size(); i++)
-	{
-		delete crimes[i];
-	}
+	for (Crime* crime : crimes)
+		delete crime;
 }
 
 void Parcel::addCrime(Crime* crime)

@@ -3,7 +3,6 @@
 
 CrimeParserManager::CrimeParserManager()
 {
-	std::vector<std::vector<Parcel*>> matrix(kSanFranciscoMatrixRowNumber, std::vector<Parcel*>(kSanFranciscoMatrixColNumber));
 	//Both vars for testing purpose only,  remove when done.
 	numberOfCrimesAddedToMatrix = 0;
 	numberOfCrimesOutOfMatrix = 0;
