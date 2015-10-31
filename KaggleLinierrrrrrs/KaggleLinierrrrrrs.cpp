@@ -33,6 +33,8 @@ int main() {
 	std::cout << "##################################################" << std::endl;
 	std::cout << "##################################################" << std::endl;
 
+	parser->getCrimesHourFreq();
+
 	std::cin.get();
 
 	delete parser;

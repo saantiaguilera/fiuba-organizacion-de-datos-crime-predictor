@@ -76,6 +76,20 @@ Crime* PDCrimeParser::createCrimeFromCSVChunk(const std::string & dataChunk) {
 
 	std::string onlyHour = hour.substr(1, 2);
 
+	if (crimesHourFreq.find(category) == crimesHourFreq.end())
+	{
+		crimesHourFreq[category] = {0.0,0.0};
+		if (std::stoi(onlyHour) < 18 && std::stoi(onlyHour) >= 9)
+			crimesHourFreq[category][0]++;
+		crimesHourFreq[category][1]++;
+	}
+	else
+	{
+		if (std::stoi(onlyHour) < 18 && std::stoi(onlyHour) >= 9)
+			crimesHourFreq[category][0]++;
+		crimesHourFreq[category][1]++;
+	}
+
 	if (std::stoi(onlyHour) < 18 && std::stoi(onlyHour) >= 9)
 		workingDuty++;
 	else offDuty++;
@@ -101,7 +115,7 @@ bool PDCrimeParser::readFileWithManager(CrimeParserManager* crimeParserManager)
 		std::getline(file, currentLine);
 
 		//Iterate over each line of the file (and, for testing purposes, only the first 5 of them)
-		while (std::getline(file, currentLine) && i<5000) {
+		while (std::getline(file, currentLine) && i<5000000) {
 			//create a Crime from the chunk we init before and print the values we got.
 			Crime* crime = createCrimeFromCSVChunk(currentLine);
 
@@ -118,4 +132,11 @@ bool PDCrimeParser::readFileWithManager(CrimeParserManager* crimeParserManager)
 	} else return false;
 
 	return true;
+}
+
+void PDCrimeParser::getCrimesHourFreq()
+{
+	for (std::map<std::string, std::vector<double>>::iterator it = crimesHourFreq.begin(); it != crimesHourFreq.end(); ++it) {
+		std::cout << it->first << " laboral: " << it->second[0] / it->second[1] *100 << "% fuera laboral " << 100 - (it->second[0] / it->second[1] *100) <<"% \n";
+	}
 }
