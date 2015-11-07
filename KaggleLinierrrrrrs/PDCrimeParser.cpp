@@ -6,17 +6,6 @@
 PDCrimeParser::PDCrimeParser()
 {
 	numberTotalOfCrimes = 0;
-
-	monday = 0;
-	tuesday = 0;
-	wednesday = 0;
-	thursday = 0;
-	friday = 0;
-	saturday = 0;
-	sunday = 0;
-
-	workingDuty = 0;
-	offDuty = 0;
 }
 
 PDCrimeParser::~PDCrimeParser()
@@ -46,53 +35,76 @@ Crime* PDCrimeParser::createCrimeFromCSVChunk(const std::string & dataChunk) {
 	std::getline(aux, x, ',');
 	std::getline(aux, y, ',');
 
+	/*
 	std::size_t found = dayOfWeek.find("Monday");
+	int typeOfDay = -1;
 	if (found != std::string::npos)
-		monday++;
+		typeOfDay=0;
 
 	found = dayOfWeek.find("Tuesday");
 	if (found != std::string::npos)
-		tuesday++;
+		typeOfDay = 0;
 
 	found = dayOfWeek.find("Wednesday");
 	if (found != std::string::npos)
-		wednesday++;
+		typeOfDay = 0;
 
 	found = dayOfWeek.find("Thursday");
 	if (found != std::string::npos)
-		thursday++;
+		typeOfDay = 0;
 
 	found = dayOfWeek.find("Friday");
 	if (found != std::string::npos)
-		friday++;
+		typeOfDay = 0;
 
 	found = dayOfWeek.find("Saturday");
 	if (found != std::string::npos)
-		saturday++;
+		typeOfDay = 1;
 
 	found = dayOfWeek.find("Sunday");
 	if (found != std::string::npos)
-		sunday++;
+		typeOfDay = 1;
 
 	std::string onlyHour = hour.substr(1, 2);
+	std::string specialCategory = category.substr(1, category.length() - 2);
+	std::replace(specialCategory.begin(), specialCategory.end(), ' ', '_');
+	std::replace(specialCategory.begin(), specialCategory.end(), '-', '_');
+	std::replace(specialCategory.begin(), specialCategory.end(), '/', '_');
 
-	if (crimesHourFreq.find(category) == crimesHourFreq.end())
+	if (crimesHourFreq.find(specialCategory) == crimesHourFreq.end())
 	{
-		crimesHourFreq[category] = {0.0,0.0};
+		crimesHourFreq[specialCategory] = {0.0,0.0, 0, 0};
 		if (std::stoi(onlyHour) < 18 && std::stoi(onlyHour) >= 9)
-			crimesHourFreq[category][0]++;
-		crimesHourFreq[category][1]++;
+			crimesHourFreq[specialCategory][0]++;
+		crimesHourFreq[specialCategory][1]++;
+
+		switch (typeOfDay) {
+		case 0:
+			crimesHourFreq[specialCategory][2]++;
+			break;
+
+		case 1:
+			crimesHourFreq[specialCategory][3]++;
+		}
+
 	}
 	else
 	{
 		if (std::stoi(onlyHour) < 18 && std::stoi(onlyHour) >= 9)
-			crimesHourFreq[category][0]++;
-		crimesHourFreq[category][1]++;
-	}
+			crimesHourFreq[specialCategory][0]++;
+		crimesHourFreq[specialCategory][1]++;
 
-	if (std::stoi(onlyHour) < 18 && std::stoi(onlyHour) >= 9)
-		workingDuty++;
-	else offDuty++;
+		switch (typeOfDay) {
+		case 0:
+			crimesHourFreq[specialCategory][2]++;
+			break;
+
+		case 1:
+			crimesHourFreq[specialCategory][3]++;
+		}
+
+	}
+	*/
 
 	return new Crime(date, hour, category, dayOfWeek, address, std::stod(x), std::stod(y));
 }
@@ -115,7 +127,7 @@ bool PDCrimeParser::readFileWithManager(CrimeParserManager* crimeParserManager)
 		std::getline(file, currentLine);
 
 		//Iterate over each line of the file (and, for testing purposes, only the first 5 of them)
-		while (std::getline(file, currentLine) && i<5000000) {
+		while (std::getline(file, currentLine)) {
 			//create a Crime from the chunk we init before and print the values we got.
 			Crime* crime = createCrimeFromCSVChunk(currentLine);
 
@@ -134,9 +146,21 @@ bool PDCrimeParser::readFileWithManager(CrimeParserManager* crimeParserManager)
 	return true;
 }
 
-void PDCrimeParser::getCrimesHourFreq()
+void PDCrimeParser::createFileWithDefinitionsForCategories()
 {
-	for (std::map<std::string, std::vector<double>>::iterator it = crimesHourFreq.begin(); it != crimesHourFreq.end(); ++it) {
-		std::cout << it->first << " laboral: " << it->second[0] / it->second[1] *100 << "% fuera laboral " << 100 - (it->second[0] / it->second[1] *100) <<"% \n";
+	//For using this method please add to the stdafx.h "#include <algorithm>"
+	std::ofstream myfile("categoryConstants.txt");
+	if (myfile.is_open()) {
+
+		for (std::map<std::string, std::vector<double>>::iterator it = crimesHourFreq.begin(); it != crimesHourFreq.end(); ++it) {
+			myfile << "#define TYPE_WORKING_DUTY_" << it->first << " " << it->second[0] / it->second[1] * 100 << std::endl;
+			myfile << "#define TYPE_WORKING_OFF_" << it->first << " " << 100 - (it->second[0] / it->second[1] * 100) << std::endl;
+			myfile << "#define TYPE_DAY_FROM_WEEK_" << it->first << " " << (it->second[2] / (it->second[2] + it->second[3])) * 100 << std::endl;
+			myfile << "#define TYPE_DAY_FROM_WEEKEND_" << it->first << " " << (it->second[3] / (it->second[2] + it->second[3])) * 100 << std::endl;
+		}
+
+		myfile.close();
 	}
+	else std::cout << "Couldnt open file" << std::endl;
+
 }

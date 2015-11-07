@@ -6,7 +6,7 @@
 #pragma once
 
 #include "targetver.h"
-
+#include "CategoryConstants.h"
 #include <stdio.h>
 #include <fstream>
 #include <string>

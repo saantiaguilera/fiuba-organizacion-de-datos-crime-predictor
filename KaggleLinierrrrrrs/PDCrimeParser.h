@@ -11,9 +11,7 @@ public:
 	~PDCrimeParser();
 	bool PDCrimeParser::readFileWithManager(CrimeParserManager* crimeParserManager);
 	 int numberTotalOfCrimes;
-	 int workingDuty, offDuty;
-	 int monday, tuesday, wednesday, thursday, friday, saturday, sunday;
-	 void getCrimesHourFreq();
+	 void createFileWithDefinitionsForCategories();
 private:
 	Crime* createCrimeFromCSVChunk(const std::string & dataChunk);
 	std::map<std::string, std::vector<double>> crimesHourFreq;
