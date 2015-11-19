@@ -3,13 +3,14 @@
 #include "stdafx.h"
 #include "PDCrimeParser.h"
 #include "CrimeParserManager.h"
+#include "CrimePredictor.h"
 
 int main() {
 	CrimeParserManager *crimeParserManager = new CrimeParserManager();
 
 	PDCrimeParser *parser = new PDCrimeParser();
 	parser->readFileWithManager(crimeParserManager);
-	/*
+	
 	std::cout << "##################################################" << std::endl;
 	std::cout << "##################################################" << std::endl;
 	std::cout << "Numero total de crimenes: " << parser->numberTotalOfCrimes << std::endl;
@@ -18,8 +19,12 @@ int main() {
 	std::cout << "##################################################" << std::endl;
 	std::cout << "##################################################" << std::endl;
 
-	parser->getCrimesHourFreq();
-	*/
+	//parser->getCrimesHourFreq();
+	
+	CrimePredictor *crimePredictor = new CrimePredictor();
+	crimePredictor->crimeParser = parser;
+	crimePredictor->predictCrime(crimeParserManager);
+
 	std::cin.get();
 
 	delete parser;

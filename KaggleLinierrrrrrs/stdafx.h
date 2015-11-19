@@ -20,6 +20,7 @@
 #define kMinLongitude -122.3568150000000
 #define kMaxLongitude -122.5153430000000
 
-#define kSanFranciscoMatrixRowNumber 8
-#define kSanFranciscoMatrixColNumber 2
+#define kSanFranciscoMatrixRowNumber 40
+#define kSanFranciscoMatrixColNumber 35
 
+//40 - 35 -> 312/500

@@ -39,6 +39,9 @@
     <ClInclude Include="CategoryConstants.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CrimePredictor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -57,6 +60,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Parcel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CrimePredictor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

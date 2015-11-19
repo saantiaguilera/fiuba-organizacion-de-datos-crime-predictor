@@ -29,3 +29,17 @@ void Parcel::getCrimesCategoryCount()
 		std::cout << it->first << " " << it->second << "\n";
 	}
 }
+
+std::string Parcel::getMostFreqCategoryCrime() {
+	int maxFreq = -1;
+	std::string maxFreqCategory;
+
+	for (std::map<std::string, int>::iterator it = crimesCountMap.begin(); it != crimesCountMap.end(); ++it) {
+		if (it->second > maxFreq)
+		{
+			maxFreq = it->second;
+			maxFreqCategory = it->first;
+		}
+	}
+	return maxFreqCategory;
+}

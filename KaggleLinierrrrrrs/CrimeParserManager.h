@@ -6,7 +6,8 @@
 
 class CrimeParserManager {
 private:
-	Parcel matrix[kSanFranciscoMatrixRowNumber][kSanFranciscoMatrixColNumber];
+	int CrimeParserManager::getColNumberForCrime(Crime *crime);
+	int CrimeParserManager::getRowNumberForCrime(Crime *crime);
 	bool coordinateIsValidForCrime(Crime* crime);
 public:
 	CrimeParserManager();
@@ -14,4 +15,6 @@ public:
 	void addCrimeToMatrix(Crime* crime);
 	 int numberOfCrimesAddedToMatrix;
 	 int numberOfCrimesOutOfMatrix;
+	 Parcel* matrix[kSanFranciscoMatrixRowNumber][kSanFranciscoMatrixColNumber];
+	 Parcel* CrimeParserManager::getParcelOfCrime(Crime *crime);
 };

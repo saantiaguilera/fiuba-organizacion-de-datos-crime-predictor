@@ -12,5 +12,6 @@ public:
 	~Parcel();
 	void addCrime(Crime* crime);
 	void getCrimesCategoryCount();
+	std::string getMostFreqCategoryCrime();
 	std::map<std::string, int> crimesCountMap;
 };

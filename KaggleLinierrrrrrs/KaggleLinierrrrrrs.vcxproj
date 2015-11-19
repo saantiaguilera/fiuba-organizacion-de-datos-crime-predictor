@@ -148,6 +148,7 @@
     <ClInclude Include="CategoryConstants.h" />
     <ClInclude Include="Crime.h" />
     <ClInclude Include="CrimeParserManager.h" />
+    <ClInclude Include="CrimePredictor.h" />
     <ClInclude Include="Parcel.h" />
     <ClInclude Include="PDCrimeParser.h" />
     <ClInclude Include="stdafx.h" />
@@ -156,6 +157,7 @@
   <ItemGroup>
     <ClCompile Include="Crime.cpp" />
     <ClCompile Include="CrimeParserManager.cpp" />
+    <ClCompile Include="CrimePredictor.cpp" />
     <ClCompile Include="KaggleLinierrrrrrs.cpp" />
     <ClCompile Include="Parcel.cpp" />
     <ClCompile Include="PDCrimeParser.cpp" />

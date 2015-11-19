@@ -12,7 +12,8 @@ public:
 	bool PDCrimeParser::readFileWithManager(CrimeParserManager* crimeParserManager);
 	 int numberTotalOfCrimes;
 	 void createFileWithDefinitionsForCategories();
+	 Crime* createCrimeFromCSVChunk(const std::string & dataChunk);
 private:
-	Crime* createCrimeFromCSVChunk(const std::string & dataChunk);
+	
 	std::map<std::string, std::vector<double>> crimesHourFreq;
 };
