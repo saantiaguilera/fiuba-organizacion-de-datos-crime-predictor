@@ -3,8 +3,8 @@
 #include "stdafx.h"
 #include <map>
 #include "Parcel.h"
-#include "CrimeParserManager.h"
-#include "PDCrimeParser.h"
+#include "DataManager.h"
+#include "CrimeParser.h"
 
 class CrimePredictor {
 private:
@@ -12,7 +12,7 @@ private:
 public:
 	CrimePredictor();
 	~CrimePredictor();
-	void CrimePredictor::predictCrime(CrimeParserManager *crimeParserManager);
-	CrimeParserManager *crimeParserManager;
-	PDCrimeParser *crimeParser;
+	void CrimePredictor::predictCrime(DataManager *crimeParserManager);
+	DataManager *crimeParserManager;
+	CrimeParser *crimeParser;
 };

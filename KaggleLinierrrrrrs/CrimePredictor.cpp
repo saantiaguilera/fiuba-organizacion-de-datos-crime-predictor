@@ -10,13 +10,13 @@ CrimePredictor::~CrimePredictor()
 
 }
 
-void CrimePredictor::predictCrime(CrimeParserManager *crimeParserManager) {
+void CrimePredictor::predictCrime(DataManager *dataManager) {
 	//Ahora ya esta adentro del proyecto. nombre "importantTrain.csv"
 	std::ifstream file("importantTrain.csv");
 
-	//Just for testing purposes. dont want to be iterating infinite times now. Should be removed (and everything about i).
-	int i = 0;
-	int numberOfRigth = 0;
+	//Just for testing purposes. dont want to be iterating infinite times now. Should be removed (and everything about totalCases).
+	int totalCases = 0;
+	int positiveCases = 0;
 
 	//If the file is malformed, doesnt exists, by some reason its not available for reading or whatsoever, return 1.
 	if (file.good()) {
@@ -27,21 +27,24 @@ void CrimePredictor::predictCrime(CrimeParserManager *crimeParserManager) {
 		std::getline(file, currentLine);
 
 		//Iterate over each line of the file (and, for testing purposes, only the first 5 of them)
-		while (std::getline(file, currentLine) && i < 81000) {
-			Crime* crime = this->crimeParser->createCrimeFromCSVChunk(currentLine);
+		while (std::getline(file, currentLine) && totalCases < 100) {
+			Crime* crime(this->crimeParser->createCrimeFromCSVChunk(currentLine));
 
-			Parcel *parcel = crimeParserManager->getParcelOfCrime(crime);//(crimeParserManager->getParcelOfCrime(crime));
-			parcel = crimeParserManager->getParcelOfCrime(crime);
-			std::string maxFreqCategoryName = parcel->getMostFreqCategoryCrime();
+			Parcel *parcel(dataManager->getParcelOfCrime(crime));//(dataManager->getParcelOfCrime(crime));
+
+			std::string maxFreqCategoryName(parcel->getMostFreqCategoryCrime());
 
 			if (maxFreqCategoryName.compare(crime->mCategory)) {
-				numberOfRigth++;
+				positiveCases++;
 			}
 
-			i++;
+			totalCases++;
+		
+			//delete the crime pointer which dissappears after this scope (not the parcel since its from the DataManager which is currently used and it will be deleted on ~DataManager)
+			delete crime;
 		}
-		std::cout << "predicciones correctas " << numberOfRigth << "\n";
-		std::cout << "predicciones totales " << i << "\n";
+		std::cout << "predicciones correctas " << positiveCases << "\n";
+		std::cout << "predicciones totales " << totalCases << "\n";
 
 	}
 }

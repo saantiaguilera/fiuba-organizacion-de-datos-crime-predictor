@@ -4,17 +4,17 @@
 #include "Crime.h"
 #include "Parcel.h"
 
-class CrimeParserManager {
+class DataManager {
 private:
-	int CrimeParserManager::getColNumberForCrime(Crime *crime);
-	int CrimeParserManager::getRowNumberForCrime(Crime *crime);
+	int DataManager::getColNumberForCrime(Crime *crime);
+	int DataManager::getRowNumberForCrime(Crime *crime);
 	bool coordinateIsValidForCrime(Crime* crime);
 public:
-	CrimeParserManager();
-	~CrimeParserManager();
+	DataManager();
+	~DataManager();
 	void addCrimeToMatrix(Crime* crime);
 	 int numberOfCrimesAddedToMatrix;
 	 int numberOfCrimesOutOfMatrix;
 	 Parcel* matrix[kSanFranciscoMatrixRowNumber][kSanFranciscoMatrixColNumber];
-	 Parcel* CrimeParserManager::getParcelOfCrime(Crime *crime);
+	 Parcel* DataManager::getParcelOfCrime(Crime *crime);
 };
