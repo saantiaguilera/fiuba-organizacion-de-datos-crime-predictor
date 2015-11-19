@@ -1,34 +1,32 @@
 // KaggleLinierrrrrrs.cpp : Defines the entry point for the console application.
 
 #include "stdafx.h"
-#include "PDCrimeParser.h"
-#include "CrimeParserManager.h"
+#include "CrimeParser.h"
+#include "DataManager.h"
 #include "CrimePredictor.h"
 
 int main() {
-	CrimeParserManager *crimeParserManager = new CrimeParserManager();
-
-	PDCrimeParser *parser = new PDCrimeParser();
-	parser->readFileWithManager(crimeParserManager);
+	DataManager *dataManager = new DataManager();
+	CrimeParser *crimeParser = new CrimeParser();
+	crimeParser->readFileWithManager(dataManager);
 	
 	std::cout << "##################################################" << std::endl;
 	std::cout << "##################################################" << std::endl;
-	std::cout << "Numero total de crimenes: " << parser->numberTotalOfCrimes << std::endl;
-	std::cout << "Numero de crimenes ingresados a la matriz: " << crimeParserManager->numberOfCrimesAddedToMatrix << std::endl;
-	std::cout << "Numero de crimenes no ingresados a la matriz: " << crimeParserManager->numberOfCrimesOutOfMatrix << std::endl;
+	std::cout << "Numero de crimenes ingresados a la matriz: " << dataManager->numberOfCrimesAddedToMatrix << std::endl;
+	std::cout << "Numero de crimenes no ingresados a la matriz: " << dataManager->numberOfCrimesOutOfMatrix << std::endl;
 	std::cout << "##################################################" << std::endl;
 	std::cout << "##################################################" << std::endl;
 
-	//parser->getCrimesHourFreq();
+	//crimeParser->getCrimesHourFreq();
 	
 	CrimePredictor *crimePredictor = new CrimePredictor();
-	crimePredictor->crimeParser = parser;
-	crimePredictor->predictCrime(crimeParserManager);
+	crimePredictor->crimeParser = crimeParser;
+	crimePredictor->predictCrime(dataManager);
 
 	std::cin.get();
 
-	delete parser;
-	delete crimeParserManager;
+	delete crimeParser;
+	delete dataManager;
 
 	return 0;
 }

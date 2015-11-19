@@ -3,9 +3,10 @@
 TODO:
 	- Remove unused variables (
 /*
-- Counters for crimes in matrix - CrimeParserManager.h
-- Counters for crimes/hours/days - PDCrimeParser.cpp
-- Limiter i - PDCrimeParser.cpp
+- Counters for crimes in matrix - DataManager.h
+- Good cases and total cases - CrimePredictor.cpp
+- Limiter i - CrimeParser.cpp
 */
 
-	- Fix memory leaks from pointers in the parsel / crimeparsermanager
+- Do KNN (Currently only getting the highest frequency category)
+- Make KNN more detailed (use constants + neighbor parcels)

@@ -27,12 +27,6 @@
     <ClInclude Include="Crime.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PDCrimeParser.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CrimeParserManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Parcel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -40,6 +34,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CrimePredictor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CrimeParser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DataManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -53,16 +53,16 @@
     <ClCompile Include="Crime.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PDCrimeParser.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CrimeParserManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Parcel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CrimePredictor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CrimeParser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DataManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

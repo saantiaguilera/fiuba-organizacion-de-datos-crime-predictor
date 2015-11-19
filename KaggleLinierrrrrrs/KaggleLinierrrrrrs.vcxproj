@@ -147,20 +147,20 @@
   <ItemGroup>
     <ClInclude Include="CategoryConstants.h" />
     <ClInclude Include="Crime.h" />
-    <ClInclude Include="CrimeParserManager.h" />
+    <ClInclude Include="DataManager.h" />
     <ClInclude Include="CrimePredictor.h" />
     <ClInclude Include="Parcel.h" />
-    <ClInclude Include="PDCrimeParser.h" />
+    <ClInclude Include="CrimeParser.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Crime.cpp" />
-    <ClCompile Include="CrimeParserManager.cpp" />
+    <ClCompile Include="DataManager.cpp" />
     <ClCompile Include="CrimePredictor.cpp" />
     <ClCompile Include="KaggleLinierrrrrrs.cpp" />
     <ClCompile Include="Parcel.cpp" />
-    <ClCompile Include="PDCrimeParser.cpp" />
+    <ClCompile Include="CrimeParser.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

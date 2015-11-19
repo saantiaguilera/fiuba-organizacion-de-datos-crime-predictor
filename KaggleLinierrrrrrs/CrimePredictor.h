@@ -3,18 +3,18 @@
 #include "stdafx.h"
 #include <map>
 #include "Parcel.h"
-#include "CrimeParserManager.h"
-#include "PDCrimeParser.h"
+#include "DataManager.h"
+#include "CrimeParser.h"
 
 class CrimePredictor {
 private:
 	std::vector<float> crimeFreqs;
-	void CrimePredictor::crimesFrequenciesForParcel(Parcel *parcel);
+	std::string CrimePredictor::crimesFrequenciesForParcel(Crime *crime, Parcel *parcel);
 	std::string getCrimeCategoryPrediction(Crime * crime, Parcel * parcel);
 public:
 	CrimePredictor();
 	~CrimePredictor();
-	void CrimePredictor::predictCrime(CrimeParserManager *crimeParserManager);
-	CrimeParserManager *crimeParserManager;
-	PDCrimeParser *crimeParser;
+	void CrimePredictor::predictCrime(DataManager *crimeParserManager);
+	DataManager *crimeParserManager;
+	CrimeParser *crimeParser;
 };

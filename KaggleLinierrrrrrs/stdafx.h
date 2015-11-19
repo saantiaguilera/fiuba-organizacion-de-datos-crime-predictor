@@ -23,4 +23,4 @@
 #define kSanFranciscoMatrixRowNumber 40
 #define kSanFranciscoMatrixColNumber 35
 
-//40 - 35 -> 312/500
+//40 - 35 -> 71%

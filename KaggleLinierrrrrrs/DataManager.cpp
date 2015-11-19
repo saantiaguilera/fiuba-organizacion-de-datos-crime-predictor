@@ -1,7 +1,7 @@
 #include "stdafx.h"
-#include "CrimeParserManager.h"
+#include "CrimeParser.h"
 
-CrimeParserManager::CrimeParserManager()
+DataManager::DataManager()
 {
 	//Both vars for testing purpose only,  remove when done.
 	numberOfCrimesAddedToMatrix = 0;
@@ -15,7 +15,7 @@ CrimeParserManager::CrimeParserManager()
 	}
 }
 
-CrimeParserManager::~CrimeParserManager()
+DataManager::~DataManager()
 {
 	for (int i = 0; i < kSanFranciscoMatrixColNumber; i++)
 	{
@@ -26,7 +26,7 @@ CrimeParserManager::~CrimeParserManager()
 	}
 }
 
-void CrimeParserManager::addCrimeToMatrix(Crime* crime)
+void DataManager::addCrimeToMatrix(Crime* crime)
 {
 	if (coordinateIsValidForCrime(crime)) {
 		int colIndex = this->getColNumberForCrime(crime);
@@ -36,21 +36,21 @@ void CrimeParserManager::addCrimeToMatrix(Crime* crime)
 	}
 }
 
-int CrimeParserManager::getColNumberForCrime(Crime *crime) {
+int DataManager::getColNumberForCrime(Crime *crime) {
 	long double latitude = crime->mLatitude - kMinLatitude;
 	long double cellHeigthLatitude = (kMaxLatitude - kMinLatitude) / kSanFranciscoMatrixRowNumber;
 	int colIndex = (int)(latitude / cellHeigthLatitude);
 	return colIndex;
 }
 
-int CrimeParserManager::getRowNumberForCrime(Crime *crime) {
+int DataManager::getRowNumberForCrime(Crime *crime) {
 	long double longitude = crime->mLongitude - kMinLongitude;
 	long double cellWidthLongitude = (kMaxLongitude - kMinLongitude) / kSanFranciscoMatrixColNumber;
 	int rowIndex = (int)(longitude / cellWidthLongitude);
 	return rowIndex;
 }
 
-bool CrimeParserManager::coordinateIsValidForCrime(Crime* crime)
+bool DataManager::coordinateIsValidForCrime(Crime* crime)
 {
 	if (crime->mLatitude <= kMaxLatitude && crime->mLatitude >= kMinLatitude && crime->mLongitude >= kMaxLongitude && crime->mLongitude <= kMinLongitude) {
 		numberOfCrimesAddedToMatrix++;
@@ -61,7 +61,7 @@ bool CrimeParserManager::coordinateIsValidForCrime(Crime* crime)
 	return false;
 }
 
-Parcel* CrimeParserManager::getParcelOfCrime(Crime *crime) {
+Parcel* DataManager::getParcelOfCrime(Crime *crime) {
 	int colNumber = this->getColNumberForCrime(crime);
 	int rowNumber = this->getRowNumberForCrime(crime);
 
