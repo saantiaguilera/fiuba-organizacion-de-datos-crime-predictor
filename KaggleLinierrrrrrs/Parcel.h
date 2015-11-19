@@ -14,4 +14,5 @@ public:
 	void getCrimesCategoryCount();
 	std::string getMostFreqCategoryCrime();
 	std::map<std::string, int> crimesCountMap;
+	long int Parcel::amountOfCrimes();
 };

@@ -8,7 +8,9 @@
 
 class CrimePredictor {
 private:
-
+	std::vector<float> crimeFreqs;
+	void CrimePredictor::crimesFrequenciesForParcel(Parcel *parcel);
+	std::string getCrimeCategoryPrediction(Crime * crime, Parcel * parcel);
 public:
 	CrimePredictor();
 	~CrimePredictor();

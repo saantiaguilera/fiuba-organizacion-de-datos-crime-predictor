@@ -43,3 +43,7 @@ std::string Parcel::getMostFreqCategoryCrime() {
 	}
 	return maxFreqCategory;
 }
+
+long int Parcel::amountOfCrimes() {
+	return sizeof(crimes);
+}
