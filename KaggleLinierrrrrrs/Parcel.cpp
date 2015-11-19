@@ -26,7 +26,7 @@ void Parcel::addCrime(Crime* crime)
 void Parcel::getCrimesCategoryCount()
 {
 	for (std::map<std::string, int>::iterator it = crimesCountMap.begin(); it != crimesCountMap.end(); ++it) {
-		std::cout << it->first << " " << it->second << "\n";
+		std::cout << it->first << " " << it->second << std::endl;
 	}
 }
 

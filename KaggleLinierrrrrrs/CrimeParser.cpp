@@ -26,7 +26,7 @@ Crime* CrimeParser::createCrimeFromCSVChunk(const std::string & dataChunk) {
 	std::string y;
 
 	//Gotta catch em all
-	char separator = ',';
+	char separator(',');
 
 	std::getline(aux, date, separator);
 	std::getline(aux, hour, separator);

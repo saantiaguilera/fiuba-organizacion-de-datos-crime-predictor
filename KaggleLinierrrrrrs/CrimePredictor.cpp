@@ -43,8 +43,8 @@ void CrimePredictor::predictCrime(DataManager *dataManager) {
 			//delete the crime pointer which dissappears after this scope (not the parcel since its from the DataManager which is currently used and it will be deleted on ~DataManager)
 			delete crime;
 		}
-		std::cout << "predicciones correctas " << positiveCases << "\n";
-		std::cout << "predicciones totales " << totalCases << "\n";
-
+		std::cout << "Predicciones correctas: " << positiveCases << std::endl;
+		std::cout << "Predicciones totales: " << totalCases << std::endl;
+		std::cout << "Promedio: " << positiveCases / (double) totalCases << "%" << std::endl;
 	}
 }
