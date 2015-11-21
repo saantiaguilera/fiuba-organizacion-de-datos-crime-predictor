@@ -22,7 +22,6 @@ int main() {
 	//crimeParser->getCrimesHourFreq();
 	
 	CrimePredictor *crimePredictor = new CrimePredictor();
-	crimePredictor->crimeParser = crimeParser;
 	crimePredictor->predictCrime(dataManager);
 
 	delete crimeParser;

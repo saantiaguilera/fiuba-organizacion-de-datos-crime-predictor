@@ -8,6 +8,13 @@ Crime::Crime(DayTime dayTime, WorkingDuty workingDuty, std::string category,
 	mLongitude(longitude) {
 }
 
+Crime::Crime(std::string id, DayTime dayTime, WorkingDuty workingDuty,
+	std::string adress, double longitude, double latitude) :
+	mId(id), mDayTime(dayTime), mWorkingDuty(workingDuty),
+	mAdress(adress), mLatitude(latitude),
+	mLongitude(longitude) {
+}
+
 Crime::Crime() {
 }
 

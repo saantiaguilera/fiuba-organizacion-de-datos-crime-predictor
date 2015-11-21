@@ -36,6 +36,7 @@ Crime* CrimeParser::createCrimeFromCSVChunk(const std::string & dataChunk) {
 	std::getline(aux, x, separator);
 	std::getline(aux, y, separator);
 
+	//Set the type of day
 	std::size_t found = dayOfWeek.find("Monday");
 	DayTime typeOfDay = DAY_FROM_WEEK;
 	if (found != std::string::npos)
@@ -71,10 +72,14 @@ Crime* CrimeParser::createCrimeFromCSVChunk(const std::string & dataChunk) {
 		}
 	}
 
+	//Set the working duty
 	WorkingDuty typeOfHour = WORKING_DUTY_OFF;
 	std::string onlyHour = hour.substr(1, 2);
 	if (std::stoi(onlyHour) < 18 && std::stoi(onlyHour) >= 9)
 		typeOfHour = WORKING_DUTY;
+
+	//Remove "" from categories
+	category = category.substr(1, category.length() - 2);
 
 	return new Crime(typeOfDay, typeOfHour, category, address, std::stod(x), std::stod(y));
 }
