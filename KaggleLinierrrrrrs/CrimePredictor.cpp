@@ -15,6 +15,8 @@ void CrimePredictor::predictCrime(DataManager *dataManager) {
 	//Ahora ya esta adentro del proyecto. nombre "crimesToPredict.csv"
 	std::ifstream file("crimesToPredict.csv");
 	std::ofstream dump("dump.csv");
+
+	dumpHeaders(dump);
 	
 	//If the file is malformed, doesnt exists, by some reason its not available for reading or whatsoever, return 1.
 	if (file.good()) {
@@ -176,10 +178,88 @@ Crime* CrimePredictor::createCrimeFromCSVChunk(const std::string & dataChunk) {
 
 void CrimePredictor::dumpData(std::ofstream &data, std::string id, std::map<std::string, long double> &pointsMap, long double totalPoints) {
 	data << id;
-	for (std::map<std::string, long double>::iterator it = pointsMap.begin(); it != pointsMap.end(); ++it) {
-		data << "," << it->first ;
-	}
-	for (std::map<std::string, long double>::iterator it = pointsMap.begin(); it != pointsMap.end(); ++it) {
-		data << "," << (it->second / totalPoints);
-	}
+
+	data << "," << "ARSON";
+	data << "," << "ASSAULT";
+	data << "," << "BAD CHECKS";
+	data << "," << "BRIBERY";
+	data << "," << "BURGLARY";
+	data << "," << "DISORDERLY CONDUCT";
+	data << "," << "DRIVING UNDER THE INFLUENCE";
+	data << "," << "DRUG/NARCOTIC";
+	data << "," << "DRUNKENNESS";
+	data << "," << "EMBEZZLEMENT";
+	data << "," << "EXTORTION";
+	data << "," << "FAMILY OFFENSES";
+	data << "," << "FORGERY/COUNTERFEITING";
+	data << "," << "FRAUD";
+	data << "," << "GAMBLING";
+	data << "," << "KIDNAPPING";
+	data << "," << "LARCENY/THEFT";
+	data << "," << "LIQUOR LAWS";
+	data << "," << "LOITERING";
+	data << "," << "MISSING PERSON";
+	data << "," << "NON-CRIMINAL";
+	data << "," << "OTHER OFFENSES";
+	data << "," << "PORNOGRAPHY/OBSCENE MAT";
+	data << "," << "PROSTITUTION";
+	data << "," << "RECOVERED VEHICLE";
+	data << "," << "ROBBERY";
+	data << "," << "RUNAWAY";
+	data << "," << "SECONDARY CODES";
+	data << "," << "SEX OFFENSES FORCIBLE";
+	data << "," << "SEX OFFENSES NON FORCIBLE";
+	data << "," << "STOLEN PROPERTY";
+	data << "," << "SUICIDE";
+	data << "," << "SUSPICIOUS OCC";
+	data << "," << "TREA";
+	data << "," << "TRESPASS";
+	data << "," << "VANDALISM";
+	data << "," << "VEHICLE THEFT";
+	data << "," << "WARRANTS";
+	data << "," << "WEAPON LAWS";
+
+	data << "," << (pointsMap["ARSON"] / totalPoints);
+	data << "," << (pointsMap["ASSAULT"] / totalPoints);
+	data << "," << (pointsMap["BAD CHECKS"] / totalPoints);
+	data << "," << (pointsMap["BRIBERY"] / totalPoints);
+	data << "," << (pointsMap["BURGLARY"] / totalPoints);
+	data << "," << (pointsMap["DISORDERLY CONDUCT"] / totalPoints);
+	data << "," << (pointsMap["DRIVING UNDER THE INFLUENCE"] / totalPoints);
+	data << "," << (pointsMap["DRUG/NARCOTIC"] / totalPoints);
+	data << "," << (pointsMap["DRUNKENNESS"] / totalPoints);
+	data << "," << (pointsMap["EMBEZZLEMENT"] / totalPoints);
+	data << "," << (pointsMap["EXTORTION"] / totalPoints);
+	data << "," << (pointsMap["FAMILY OFFENSES"] / totalPoints);
+	data << "," << (pointsMap["FORGERY/COUNTERFEITING"] / totalPoints);
+	data << "," << (pointsMap["FRAUD"] / totalPoints);
+	data << "," << (pointsMap["GAMBLING"] / totalPoints);
+	data << "," << (pointsMap["KIDNAPPING"] / totalPoints);
+	data << "," << (pointsMap["LARCENY/THEFT"] / totalPoints);
+	data << "," << (pointsMap["LIQUOR LAWS"] / totalPoints);
+	data << "," << (pointsMap["LOITERING"] / totalPoints);
+	data << "," << (pointsMap["MISSING PERSON"] / totalPoints);
+	data << "," << (pointsMap["NON-CRIMINAL"] / totalPoints);
+	data << "," << (pointsMap["OTHER OFFENSES"] / totalPoints);
+	data << "," << (pointsMap["PORNOGRAPHY/OBSCENE MAT"] / totalPoints);
+	data << "," << (pointsMap["PROSTITUTION"] / totalPoints);
+	data << "," << (pointsMap["RECOVERED VEHICLE"] / totalPoints);
+	data << "," << (pointsMap["ROBBERY"] / totalPoints);
+	data << "," << (pointsMap["RUNAWAY"] / totalPoints);
+	data << "," << (pointsMap["SECONDARY CODES"] / totalPoints);
+	data << "," << (pointsMap["SEX OFFENSES FORCIBLE"] / totalPoints);
+	data << "," << (pointsMap["SEX OFFENSES NON FORCIBLE"] / totalPoints);
+	data << "," << (pointsMap["STOLEN PROPERTY"] / totalPoints);
+	data << "," << (pointsMap["SUICIDE"] / totalPoints);
+	data << "," << (pointsMap["SUSPICIOUS OCC"] / totalPoints);
+	data << "," << (pointsMap["TREA"] / totalPoints);
+	data << "," << (pointsMap["TRESPASS"] / totalPoints);
+	data << "," << (pointsMap["VANDALISM"] / totalPoints);
+	data << "," << (pointsMap["VEHICLE THEFT"] / totalPoints);
+	data << "," << (pointsMap["WARRANTS"] / totalPoints);
+	data << "," << (pointsMap["WEAPON LAWS"] / totalPoints) << std::endl;
+}
+
+void CrimePredictor::dumpHeaders(std::ofstream &data) {
+	data << "Id,ARSON,ASSAULT,BAD CHECKS,BRIBERY,BURGLARY,DISORDERLY CONDUCT,DRIVING UNDER THE INFLUENCE,DRUG/NARCOTIC,DRUNKENNESS,EMBEZZLEMENT,EXTORTION,FAMILY OFFENSES,FORGERY/COUNTERFEITING,FRAUD,GAMBLING,KIDNAPPING,LARCENY/THEFT,LIQUOR LAWS,LOITERING,MISSING PERSON,NON-CRIMINAL,OTHER OFFENSES,PORNOGRAPHY/OBSCENE MAT,PROSTITUTION,RECOVERED VEHICLE,ROBBERY,RUNAWAY,SECONDARY CODES,SEX OFFENSES FORCIBLE,SEX OFFENSES NON FORCIBLE,STOLEN PROPERTY,SUICIDE,SUSPICIOUS OCC,TREA,TRESPASS,VANDALISM,VEHICLE THEFT,WARRANTS,WEAPON LAWS";
 }
