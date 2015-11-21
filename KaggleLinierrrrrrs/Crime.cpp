@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Crime.h"
 
-Crime::Crime(int dayTime, int workingDuty, std::string category,
+Crime::Crime(DayTime dayTime, WorkingDuty workingDuty, std::string category,
 	std::string adress, double longitude, double latitude) :
 	mDayTime(dayTime), mWorkingDuty(workingDuty), mCategory(category),
 	mAdress(adress), mLatitude(latitude),
