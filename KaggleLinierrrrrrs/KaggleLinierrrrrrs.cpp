@@ -6,6 +6,8 @@
 #include "CrimePredictor.h"
 
 int main() {
+	long long startingMilis = (std::chrono::duration_cast< std::chrono::milliseconds >(std::chrono::system_clock::now().time_since_epoch())).count();
+
 	DataManager *dataManager = new DataManager();
 	CrimeParser *crimeParser = new CrimeParser();
 	crimeParser->readFileWithManager(dataManager);
@@ -23,10 +25,17 @@ int main() {
 	crimePredictor->crimeParser = crimeParser;
 	crimePredictor->predictCrime(dataManager);
 
-	std::cin.get();
-
 	delete crimeParser;
 	delete dataManager;
+	
+	long long endingMilis = (std::chrono::duration_cast< std::chrono::milliseconds >(std::chrono::system_clock::now().time_since_epoch())).count();
+	long long timeElapsed = (endingMilis - startingMilis) / 1000;
+	
+	std::cout << "##################################################" << std::endl;
+	std::cout << "##################################################" << std::endl;
+	std::cout << "Time elapsed (in seconds): " << timeElapsed << std::endl;
+
+	std::cin.get();
 
 	return 0;
 }

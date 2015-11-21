@@ -8,9 +8,7 @@
 
 class CrimePredictor {
 private:
-	std::vector<float> crimeFreqs;
-	std::string CrimePredictor::crimesFrequenciesForParcel(Crime *crime, Parcel *parcel);
-	std::string getCrimeCategoryPrediction(Crime * crime, Parcel * parcel);
+	void getDataForCrime(Crime * currentCrime, Parcel * parcel, long double & maxDistance, std::map<std::string, int>& categoryTimesOcasionsMap, std::map<std::string, int>& categoryDutiesOcasionsMap);
 public:
 	CrimePredictor();
 	~CrimePredictor();
@@ -18,3 +16,5 @@ public:
 	DataManager *crimeParserManager;
 	CrimeParser *crimeParser;
 };
+
+

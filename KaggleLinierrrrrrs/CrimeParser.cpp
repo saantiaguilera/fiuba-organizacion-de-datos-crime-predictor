@@ -36,7 +36,47 @@ Crime* CrimeParser::createCrimeFromCSVChunk(const std::string & dataChunk) {
 	std::getline(aux, x, separator);
 	std::getline(aux, y, separator);
 
-	return new Crime(date, hour, category, dayOfWeek, address, std::stod(x), std::stod(y));
+	std::size_t found = dayOfWeek.find("Monday");
+	int typeOfDay = DAY_FROM_WEEK;
+	if (found != std::string::npos)
+		typeOfDay= DAY_FROM_WEEK;
+	else {
+		found = dayOfWeek.find("Tuesday");
+		if (found != std::string::npos)
+			typeOfDay = DAY_FROM_WEEK;
+		else {
+			found = dayOfWeek.find("Wednesday");
+			if (found != std::string::npos)
+				typeOfDay = DAY_FROM_WEEK;
+			else {
+				found = dayOfWeek.find("Thursday");
+				if (found != std::string::npos)
+					typeOfDay = DAY_FROM_WEEK;
+				else {
+					found = dayOfWeek.find("Friday");
+					if (found != std::string::npos)
+						typeOfDay = DAY_FROM_WEEK;
+					else {
+						found = dayOfWeek.find("Saturday");
+						if (found != std::string::npos)
+							typeOfDay = DAY_FROM_WEEKEND;
+						else {
+							found = dayOfWeek.find("Sunday");
+							if (found != std::string::npos)
+								typeOfDay = DAY_FROM_WEEKEND;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	int typeOfHour = WORKING_DUTY_OFF;
+	std::string onlyHour = hour.substr(1, 2);
+	if (std::stoi(onlyHour) < 18 && std::stoi(onlyHour) >= 9)
+		typeOfHour = WORKING_DUTY;
+
+	return new Crime(typeOfDay, typeOfHour, category, address, std::stod(x), std::stod(y));
 }
 
 bool CrimeParser::readFileWithManager(DataManager* dataManager)
@@ -57,38 +97,20 @@ bool CrimeParser::readFileWithManager(DataManager* dataManager)
 		std::getline(file, currentLine);
 
 		//Iterate over each line of the file (and, for testing purposes, only the first 5 of them)
-		while (std::getline(file, currentLine) && i < 5000) {
-			//create a Crime from the chunk we init before and print the values we got.
-			Crime* crime(createCrimeFromCSVChunk(currentLine));
+		while (std::getline(file, currentLine) && i < CASES_TO_PARSE) {
+			if (i > CASES_TO_PREDICT) {
+				//create a Crime from the chunk we init before and print the values we got.
+				Crime* crime(createCrimeFromCSVChunk(currentLine));
 
-			dataManager -> addCrimeToMatrix(crime);
+				dataManager->addCrimeToMatrix(crime);
 
-			//Uncomment if you want to see the descript of a Crime (beware, reduce the index of i<VALUE.
-			//crime->printValues();
-
+				//Uncomment if you want to see the descript of a Crime (beware, reduce the index of i<VALUE.
+				//crime->printValues();
+			}
 			i++;
 		}
 
 	} else return false;
 
 	return true;
-}
-
-void CrimeParser::createFileWithDefinitionsForCategories()
-{
-	//For using this method please add to the stdafx.h "#include <algorithm>"
-	std::ofstream myfile("categoryConstants.txt");
-	if (myfile.is_open()) {
-
-		for (std::map<std::string, std::vector<double>>::iterator it = crimesHourFreq.begin(); it != crimesHourFreq.end(); ++it) {
-			myfile << "#define TYPE_WORKING_DUTY_" << it->first << " " << it->second[0] / it->second[1] * 100 << std::endl;
-			myfile << "#define TYPE_WORKING_OFF_" << it->first << " " << 100 - (it->second[0] / it->second[1] * 100) << std::endl;
-			myfile << "#define TYPE_DAY_FROM_WEEK_" << it->first << " " << (it->second[2] / (it->second[2] + it->second[3])) * 100 << std::endl;
-			myfile << "#define TYPE_DAY_FROM_WEEKEND_" << it->first << " " << (it->second[3] / (it->second[2] + it->second[3])) * 100 << std::endl;
-		}
-
-		myfile.close();
-	}
-	else std::cout << "Couldnt open file" << std::endl;
-
 }

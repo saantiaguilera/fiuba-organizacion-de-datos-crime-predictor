@@ -30,9 +30,6 @@
     <ClInclude Include="Parcel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CategoryConstants.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CrimePredictor.h">
       <Filter>Header Files</Filter>
     </ClInclude>

@@ -145,7 +145,6 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CategoryConstants.h" />
     <ClInclude Include="Crime.h" />
     <ClInclude Include="DataManager.h" />
     <ClInclude Include="CrimePredictor.h" />

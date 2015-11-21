@@ -6,7 +6,6 @@
 #pragma once
 
 #include "targetver.h"
-#include "CategoryConstants.h"
 #include <stdio.h>
 #include <fstream>
 #include <string>
@@ -14,6 +13,7 @@
 #include <istream>
 #include <vector>
 #include <sstream>
+#include <chrono>
 
 #define kMinLatitude 37.7074870000000
 #define kMaxLatitude 37.8126370000000
@@ -22,5 +22,11 @@
 
 #define kSanFranciscoMatrixRowNumber 40
 #define kSanFranciscoMatrixColNumber 35
+
+enum DayTime { DAY_FROM_WEEK = 0, DAY_FROM_WEEKEND = 1 };
+enum WorkingDuty { WORKING_DUTY = 0, WORKING_DUTY_OFF = 1 };
+
+#define CASES_TO_PREDICT 2000
+#define CASES_TO_PARSE 50000
 
 //40 - 35 -> 71%
