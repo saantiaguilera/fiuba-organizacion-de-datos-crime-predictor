@@ -28,7 +28,7 @@ void CrimePredictor::predictCrime(DataManager *dataManager) {
 		std::getline(file, currentLine);
 
 		//Iterate over each line of the file (and, for testing purposes, only the first 5 of them)
-		while (std::getline(file, currentLine) && totalCases < 500) {
+		while (std::getline(file, currentLine) && totalCases < 1000) {
 			Crime* crime = this->crimeParser->createCrimeFromCSVChunk(currentLine);
 
 			Parcel *parcel(dataManager->getParcelOfCrime(crime));//(dataManager->getParcelOfCrime(crime));
@@ -54,8 +54,9 @@ std::string CrimePredictor::crimesFrequenciesForParcel(Crime *crime, Parcel *par
 	int index = 0;
 	int partialSum = 0;
 	for (std::map<std::string, int>::iterator it = parcel->crimesCountMap.begin(); it != parcel->crimesCountMap.end(); ++it) {
-		crimeFreqs.push_back(it->second + partialSum);
-		partialSum = partialSum + it->second;
+		partialSum += it->second;
+		crimeFreqs.push_back(partialSum);
+		
 		index ++;
 	}
 	return this->getCrimeCategoryPrediction(crime, parcel);
