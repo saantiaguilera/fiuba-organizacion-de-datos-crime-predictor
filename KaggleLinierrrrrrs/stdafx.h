@@ -26,7 +26,7 @@
 enum DayTime { DAY_FROM_WEEK = 0, DAY_FROM_WEEKEND = 1 };
 enum WorkingDuty { WORKING_DUTY = 0, WORKING_DUTY_OFF = 1 };
 
-#define CASES_TO_PREDICT 2000
-#define CASES_TO_PARSE 50000
+#define CASES_TO_PREDICT 200
+#define CASES_TO_PARSE 5000
 
 //40 - 35 -> 71%

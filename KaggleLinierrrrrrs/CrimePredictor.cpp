@@ -118,6 +118,7 @@ Crime* CrimePredictor::createCrimeFromCSVChunk(const std::string & dataChunk) {
 	std::string category;
 	std::string dayOfWeek;
 	std::string address;
+	std::string district;
 	std::string x;
 	std::string y;
 
@@ -128,6 +129,9 @@ Crime* CrimePredictor::createCrimeFromCSVChunk(const std::string & dataChunk) {
 	std::getline(aux, hour, separator);
 	std::getline(aux, dayOfWeek, separator);
 	std::getline(aux, address, separator);
+
+	std::getline(aux, district, separator);
+
 	std::getline(aux, x, separator);
 	std::getline(aux, y, separator);
 
