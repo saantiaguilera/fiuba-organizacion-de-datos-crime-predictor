@@ -90,9 +90,6 @@ bool CrimeParser::readFileWithManager(DataManager* dataManager)
 	//Ahora ya esta adentro del proyecto. nombre "importantTrain.csv"
     std::ifstream file("importantTrain.csv");
 
-	//Just for testing purposes. dont want to be iterating infinite times now. Should be removed (and everything about i).
-	int i = 0;
-
 	//If the file is malformed, doesnt exists, by some reason its not available for reading or whatsoever, return 1.
 	if (file.good()) {
 		//Init variables we will be using in the loop
@@ -102,8 +99,7 @@ bool CrimeParser::readFileWithManager(DataManager* dataManager)
 		std::getline(file, currentLine);
 
 		//Iterate over each line of the file (and, for testing purposes, only the first 5 of them)
-		while (std::getline(file, currentLine) && i < CASES_TO_PARSE) {
-			if (i > CASES_TO_PREDICT) {
+		while (std::getline(file, currentLine)) {
 				//create a Crime from the chunk we init before and print the values we got.
 				Crime* crime(createCrimeFromCSVChunk(currentLine));
 
@@ -111,8 +107,6 @@ bool CrimeParser::readFileWithManager(DataManager* dataManager)
 
 				//Uncomment if you want to see the descript of a Crime (beware, reduce the index of i<VALUE.
 				//crime->printValues();
-			}
-			i++;
 		}
 
 	} else return false;

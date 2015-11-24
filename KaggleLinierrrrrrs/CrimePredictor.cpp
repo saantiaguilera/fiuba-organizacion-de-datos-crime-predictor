@@ -2,6 +2,8 @@
 #include "CrimePredictor.h"
 #include <time.h>
 
+#define COMMA ","
+
 CrimePredictor::CrimePredictor() {
 	srand(time(NULL));
 }
@@ -181,87 +183,89 @@ Crime* CrimePredictor::createCrimeFromCSVChunk(const std::string & dataChunk) {
 }
 
 void CrimePredictor::dumpData(std::ofstream &data, std::string id, std::map<std::string, long double> &pointsMap, long double totalPoints) {
-	data << id;
 
-	data << "," << "ARSON";
-	data << "," << "ASSAULT";
-	data << "," << "BAD CHECKS";
-	data << "," << "BRIBERY";
-	data << "," << "BURGLARY";
-	data << "," << "DISORDERLY CONDUCT";
-	data << "," << "DRIVING UNDER THE INFLUENCE";
-	data << "," << "DRUG/NARCOTIC";
-	data << "," << "DRUNKENNESS";
-	data << "," << "EMBEZZLEMENT";
-	data << "," << "EXTORTION";
-	data << "," << "FAMILY OFFENSES";
-	data << "," << "FORGERY/COUNTERFEITING";
-	data << "," << "FRAUD";
-	data << "," << "GAMBLING";
-	data << "," << "KIDNAPPING";
-	data << "," << "LARCENY/THEFT";
-	data << "," << "LIQUOR LAWS";
-	data << "," << "LOITERING";
-	data << "," << "MISSING PERSON";
-	data << "," << "NON-CRIMINAL";
-	data << "," << "OTHER OFFENSES";
-	data << "," << "PORNOGRAPHY/OBSCENE MAT";
-	data << "," << "PROSTITUTION";
-	data << "," << "RECOVERED VEHICLE";
-	data << "," << "ROBBERY";
-	data << "," << "RUNAWAY";
-	data << "," << "SECONDARY CODES";
-	data << "," << "SEX OFFENSES FORCIBLE";
-	data << "," << "SEX OFFENSES NON FORCIBLE";
-	data << "," << "STOLEN PROPERTY";
-	data << "," << "SUICIDE";
-	data << "," << "SUSPICIOUS OCC";
-	data << "," << "TREA";
-	data << "," << "TRESPASS";
-	data << "," << "VANDALISM";
-	data << "," << "VEHICLE THEFT";
-	data << "," << "WARRANTS";
-	data << "," << "WEAPON LAWS";
+	std::string outputString = id;
+	outputString += COMMA;
+	outputString += std::to_string((pointsMap["ARSON"] / totalPoints));
+	outputString += COMMA;
+	outputString += std::to_string((pointsMap["ASSAULT"] / totalPoints));
+	outputString += COMMA;
+	outputString += std::to_string((pointsMap["BAD CHECKS"] / totalPoints));
+	outputString += COMMA;
+	outputString += std::to_string((pointsMap["BRIBERY"] / totalPoints));
+	outputString += COMMA;
+	outputString += std::to_string((pointsMap["BURGLARY"] / totalPoints));
+	outputString += COMMA;
+	outputString += std::to_string((pointsMap["DISORDERLY CONDUCT"] / totalPoints));
+	outputString += COMMA;
+	outputString += std::to_string((pointsMap["DRIVING UNDER THE INFLUENCE"] / totalPoints));
+	outputString += COMMA;
+	outputString += std::to_string((pointsMap["DRUG/NARCOTIC"] / totalPoints));
+	outputString += COMMA;
+	outputString += std::to_string((pointsMap["DRUNKENNESS"] / totalPoints));
+	outputString += COMMA;
+	outputString += std::to_string((pointsMap["EMBEZZLEMENT"] / totalPoints));
+	outputString += COMMA;
+	outputString += std::to_string((pointsMap["EXTORTION"] / totalPoints));
+	outputString += COMMA;
+	outputString += std::to_string((pointsMap["FAMILY OFFENSES"] / totalPoints));
+	outputString += COMMA;
+	outputString += std::to_string((pointsMap["FORGERY/COUNTERFEITING"] / totalPoints));
+	outputString += COMMA;
+	outputString += std::to_string((pointsMap["FRAUD"] / totalPoints));
+	outputString += COMMA;
+	outputString += std::to_string((pointsMap["GAMBLING"] / totalPoints));
+	outputString += COMMA;
+	outputString += std::to_string((pointsMap["KIDNAPPING"] / totalPoints));
+	outputString += COMMA;
+	outputString += std::to_string((pointsMap["LARCENY/THEFT"] / totalPoints));
+	outputString += COMMA;
+	outputString += std::to_string((pointsMap["LIQUOR LAWS"] / totalPoints));
+	outputString += COMMA;
+	outputString += std::to_string((pointsMap["LOITERING"] / totalPoints));
+	outputString += COMMA;
+	outputString += std::to_string((pointsMap["MISSING PERSON"] / totalPoints));
+	outputString += COMMA;
+	outputString += std::to_string((pointsMap["NON-CRIMINAL"] / totalPoints));
+	outputString += COMMA;
+	outputString += std::to_string((pointsMap["OTHER OFFENSES"] / totalPoints));
+	outputString += COMMA;
+	outputString += std::to_string((pointsMap["PORNOGRAPHY/OBSCENE MAT"] / totalPoints));
+	outputString += COMMA;
+	outputString += std::to_string((pointsMap["PROSTITUTION"] / totalPoints));
+	outputString += COMMA;
+	outputString += std::to_string((pointsMap["RECOVERED VEHICLE"] / totalPoints));
+	outputString += COMMA;
+	outputString += std::to_string((pointsMap["ROBBERY"] / totalPoints));
+	outputString += COMMA;
+	outputString += std::to_string((pointsMap["RUNAWAY"] / totalPoints));
+	outputString += COMMA;
+	outputString += std::to_string((pointsMap["SECONDARY CODES"] / totalPoints));
+	outputString += COMMA;
+	outputString += std::to_string((pointsMap["SEX OFFENSES FORCIBLE"] / totalPoints));
+	outputString += COMMA;
+	outputString += std::to_string((pointsMap["SEX OFFENSES NON FORCIBLE"] / totalPoints));
+	outputString += COMMA;
+	outputString += std::to_string((pointsMap["STOLEN PROPERTY"] / totalPoints));
+	outputString += COMMA;
+	outputString += std::to_string((pointsMap["SUICIDE"] / totalPoints));
+	outputString += COMMA;
+	outputString += std::to_string((pointsMap["SUSPICIOUS OCC"] / totalPoints));
+	outputString += COMMA;
+	outputString += std::to_string((pointsMap["TREA"] / totalPoints));
+	outputString += COMMA;
+	outputString += std::to_string((pointsMap["TRESPASS"] / totalPoints));
+	outputString += COMMA;
+	outputString += std::to_string((pointsMap["VANDALISM"] / totalPoints));
+	outputString += COMMA;
+	outputString += std::to_string((pointsMap["VEHICLE THEFT"] / totalPoints));
+	outputString += COMMA;
+	outputString += std::to_string((pointsMap["WARRANTS"] / totalPoints));
+	outputString += COMMA;
+	outputString += std::to_string((pointsMap["WEAPON LAWS"] / totalPoints));
+	outputString += "\n";
 
-	data << "," << (pointsMap["ARSON"] / totalPoints);
-	data << "," << (pointsMap["ASSAULT"] / totalPoints);
-	data << "," << (pointsMap["BAD CHECKS"] / totalPoints);
-	data << "," << (pointsMap["BRIBERY"] / totalPoints);
-	data << "," << (pointsMap["BURGLARY"] / totalPoints);
-	data << "," << (pointsMap["DISORDERLY CONDUCT"] / totalPoints);
-	data << "," << (pointsMap["DRIVING UNDER THE INFLUENCE"] / totalPoints);
-	data << "," << (pointsMap["DRUG/NARCOTIC"] / totalPoints);
-	data << "," << (pointsMap["DRUNKENNESS"] / totalPoints);
-	data << "," << (pointsMap["EMBEZZLEMENT"] / totalPoints);
-	data << "," << (pointsMap["EXTORTION"] / totalPoints);
-	data << "," << (pointsMap["FAMILY OFFENSES"] / totalPoints);
-	data << "," << (pointsMap["FORGERY/COUNTERFEITING"] / totalPoints);
-	data << "," << (pointsMap["FRAUD"] / totalPoints);
-	data << "," << (pointsMap["GAMBLING"] / totalPoints);
-	data << "," << (pointsMap["KIDNAPPING"] / totalPoints);
-	data << "," << (pointsMap["LARCENY/THEFT"] / totalPoints);
-	data << "," << (pointsMap["LIQUOR LAWS"] / totalPoints);
-	data << "," << (pointsMap["LOITERING"] / totalPoints);
-	data << "," << (pointsMap["MISSING PERSON"] / totalPoints);
-	data << "," << (pointsMap["NON-CRIMINAL"] / totalPoints);
-	data << "," << (pointsMap["OTHER OFFENSES"] / totalPoints);
-	data << "," << (pointsMap["PORNOGRAPHY/OBSCENE MAT"] / totalPoints);
-	data << "," << (pointsMap["PROSTITUTION"] / totalPoints);
-	data << "," << (pointsMap["RECOVERED VEHICLE"] / totalPoints);
-	data << "," << (pointsMap["ROBBERY"] / totalPoints);
-	data << "," << (pointsMap["RUNAWAY"] / totalPoints);
-	data << "," << (pointsMap["SECONDARY CODES"] / totalPoints);
-	data << "," << (pointsMap["SEX OFFENSES FORCIBLE"] / totalPoints);
-	data << "," << (pointsMap["SEX OFFENSES NON FORCIBLE"] / totalPoints);
-	data << "," << (pointsMap["STOLEN PROPERTY"] / totalPoints);
-	data << "," << (pointsMap["SUICIDE"] / totalPoints);
-	data << "," << (pointsMap["SUSPICIOUS OCC"] / totalPoints);
-	data << "," << (pointsMap["TREA"] / totalPoints);
-	data << "," << (pointsMap["TRESPASS"] / totalPoints);
-	data << "," << (pointsMap["VANDALISM"] / totalPoints);
-	data << "," << (pointsMap["VEHICLE THEFT"] / totalPoints);
-	data << "," << (pointsMap["WARRANTS"] / totalPoints);
-	data << "," << (pointsMap["WEAPON LAWS"] / totalPoints) << std::endl;
+	data << outputString;
 }
 
 void CrimePredictor::dumpHeaders(std::ofstream &data) {
