@@ -1,5 +1,5 @@
 #pragma once
-#include "stdafx.h"
+
 #include "Crime.h"
 #include "DataManager.h"
 #include <map>

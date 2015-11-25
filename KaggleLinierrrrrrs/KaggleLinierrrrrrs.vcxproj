@@ -148,6 +148,7 @@
     <ClInclude Include="Crime.h" />
     <ClInclude Include="DataManager.h" />
     <ClInclude Include="CrimePredictor.h" />
+    <ClInclude Include="FileDumper.h" />
     <ClInclude Include="Parcel.h" />
     <ClInclude Include="CrimeParser.h" />
     <ClInclude Include="stdafx.h" />
@@ -157,6 +158,7 @@
     <ClCompile Include="Crime.cpp" />
     <ClCompile Include="DataManager.cpp" />
     <ClCompile Include="CrimePredictor.cpp" />
+    <ClCompile Include="FileDumper.cpp" />
     <ClCompile Include="KaggleLinierrrrrrs.cpp" />
     <ClCompile Include="Parcel.cpp" />
     <ClCompile Include="CrimeParser.cpp" />

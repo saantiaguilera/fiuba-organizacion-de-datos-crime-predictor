@@ -1,8 +1,9 @@
 #include "stdafx.h"
 #include "CrimePredictor.h"
 #include <time.h>
+#include <map>
+#include "FileDumper.h"
 
-#define COMMA ","
 
 CrimePredictor::CrimePredictor() {
 	srand(time(NULL));
@@ -16,9 +17,8 @@ CrimePredictor::~CrimePredictor()
 void CrimePredictor::predictCrime(DataManager *dataManager) {
 	//Ahora ya esta adentro del proyecto. nombre "crimesToPredict.csv"
 	std::ifstream file("crimesToPredict.csv");
-	std::ofstream dump("dump.csv");
 
-	dumpHeaders(dump);
+	FileDumper* fileDumper = new FileDumper();
 	
 	//If the file is malformed, doesnt exists, by some reason its not available for reading or whatsoever, return 1.
 	if (file.good()) {
@@ -77,12 +77,14 @@ void CrimePredictor::predictCrime(DataManager *dataManager) {
 				totalPoints += it->second;	
 			}
 
-			dumpData(dump, crime->mId, categoryPointsMap, totalPoints);
+			fileDumper->dumpPrediction(crime->mId, categoryPointsMap, totalPoints);
 		
 			//delete the crime pointer which dissappears after this scope (not the parcel since its from the DataManager which is currently used and it will be deleted on ~DataManager)
 			delete crime;
 		}
 	}
+
+	delete fileDumper;
 }
 
 void CrimePredictor::getDataForCrime(Crime *currentCrime, Parcel *parcel, long double &maxDistance, std::map<std::string, int> &categoryTimesOcasionsMap, std::map<std::string, int> &categoryDutiesOcasionsMap) {
@@ -180,94 +182,4 @@ Crime* CrimePredictor::createCrimeFromCSVChunk(const std::string & dataChunk) {
 		typeOfHour = WORKING_DUTY;
 
 	return new Crime(id, typeOfDay, typeOfHour, address, std::stod(x), std::stod(y));
-}
-
-void CrimePredictor::dumpData(std::ofstream &data, std::string id, std::map<std::string, long double> &pointsMap, long double totalPoints) {
-
-	std::string outputString = id;
-	outputString += COMMA;
-	outputString += std::to_string((pointsMap["ARSON"] / totalPoints));
-	outputString += COMMA;
-	outputString += std::to_string((pointsMap["ASSAULT"] / totalPoints));
-	outputString += COMMA;
-	outputString += std::to_string((pointsMap["BAD CHECKS"] / totalPoints));
-	outputString += COMMA;
-	outputString += std::to_string((pointsMap["BRIBERY"] / totalPoints));
-	outputString += COMMA;
-	outputString += std::to_string((pointsMap["BURGLARY"] / totalPoints));
-	outputString += COMMA;
-	outputString += std::to_string((pointsMap["DISORDERLY CONDUCT"] / totalPoints));
-	outputString += COMMA;
-	outputString += std::to_string((pointsMap["DRIVING UNDER THE INFLUENCE"] / totalPoints));
-	outputString += COMMA;
-	outputString += std::to_string((pointsMap["DRUG/NARCOTIC"] / totalPoints));
-	outputString += COMMA;
-	outputString += std::to_string((pointsMap["DRUNKENNESS"] / totalPoints));
-	outputString += COMMA;
-	outputString += std::to_string((pointsMap["EMBEZZLEMENT"] / totalPoints));
-	outputString += COMMA;
-	outputString += std::to_string((pointsMap["EXTORTION"] / totalPoints));
-	outputString += COMMA;
-	outputString += std::to_string((pointsMap["FAMILY OFFENSES"] / totalPoints));
-	outputString += COMMA;
-	outputString += std::to_string((pointsMap["FORGERY/COUNTERFEITING"] / totalPoints));
-	outputString += COMMA;
-	outputString += std::to_string((pointsMap["FRAUD"] / totalPoints));
-	outputString += COMMA;
-	outputString += std::to_string((pointsMap["GAMBLING"] / totalPoints));
-	outputString += COMMA;
-	outputString += std::to_string((pointsMap["KIDNAPPING"] / totalPoints));
-	outputString += COMMA;
-	outputString += std::to_string((pointsMap["LARCENY/THEFT"] / totalPoints));
-	outputString += COMMA;
-	outputString += std::to_string((pointsMap["LIQUOR LAWS"] / totalPoints));
-	outputString += COMMA;
-	outputString += std::to_string((pointsMap["LOITERING"] / totalPoints));
-	outputString += COMMA;
-	outputString += std::to_string((pointsMap["MISSING PERSON"] / totalPoints));
-	outputString += COMMA;
-	outputString += std::to_string((pointsMap["NON-CRIMINAL"] / totalPoints));
-	outputString += COMMA;
-	outputString += std::to_string((pointsMap["OTHER OFFENSES"] / totalPoints));
-	outputString += COMMA;
-	outputString += std::to_string((pointsMap["PORNOGRAPHY/OBSCENE MAT"] / totalPoints));
-	outputString += COMMA;
-	outputString += std::to_string((pointsMap["PROSTITUTION"] / totalPoints));
-	outputString += COMMA;
-	outputString += std::to_string((pointsMap["RECOVERED VEHICLE"] / totalPoints));
-	outputString += COMMA;
-	outputString += std::to_string((pointsMap["ROBBERY"] / totalPoints));
-	outputString += COMMA;
-	outputString += std::to_string((pointsMap["RUNAWAY"] / totalPoints));
-	outputString += COMMA;
-	outputString += std::to_string((pointsMap["SECONDARY CODES"] / totalPoints));
-	outputString += COMMA;
-	outputString += std::to_string((pointsMap["SEX OFFENSES FORCIBLE"] / totalPoints));
-	outputString += COMMA;
-	outputString += std::to_string((pointsMap["SEX OFFENSES NON FORCIBLE"] / totalPoints));
-	outputString += COMMA;
-	outputString += std::to_string((pointsMap["STOLEN PROPERTY"] / totalPoints));
-	outputString += COMMA;
-	outputString += std::to_string((pointsMap["SUICIDE"] / totalPoints));
-	outputString += COMMA;
-	outputString += std::to_string((pointsMap["SUSPICIOUS OCC"] / totalPoints));
-	outputString += COMMA;
-	outputString += std::to_string((pointsMap["TREA"] / totalPoints));
-	outputString += COMMA;
-	outputString += std::to_string((pointsMap["TRESPASS"] / totalPoints));
-	outputString += COMMA;
-	outputString += std::to_string((pointsMap["VANDALISM"] / totalPoints));
-	outputString += COMMA;
-	outputString += std::to_string((pointsMap["VEHICLE THEFT"] / totalPoints));
-	outputString += COMMA;
-	outputString += std::to_string((pointsMap["WARRANTS"] / totalPoints));
-	outputString += COMMA;
-	outputString += std::to_string((pointsMap["WEAPON LAWS"] / totalPoints));
-	outputString += "\n";
-
-	data << outputString;
-}
-
-void CrimePredictor::dumpHeaders(std::ofstream &data) {
-	data << "Id,ARSON,ASSAULT,BAD CHECKS,BRIBERY,BURGLARY,DISORDERLY CONDUCT,DRIVING UNDER THE INFLUENCE,DRUG/NARCOTIC,DRUNKENNESS,EMBEZZLEMENT,EXTORTION,FAMILY OFFENSES,FORGERY/COUNTERFEITING,FRAUD,GAMBLING,KIDNAPPING,LARCENY/THEFT,LIQUOR LAWS,LOITERING,MISSING PERSON,NON-CRIMINAL,OTHER OFFENSES,PORNOGRAPHY/OBSCENE MAT,PROSTITUTION,RECOVERED VEHICLE,ROBBERY,RUNAWAY,SECONDARY CODES,SEX OFFENSES FORCIBLE,SEX OFFENSES NON FORCIBLE,STOLEN PROPERTY,SUICIDE,SUSPICIOUS OCC,TREA,TRESPASS,VANDALISM,VEHICLE THEFT,WARRANTS,WEAPON LAWS";
 }
