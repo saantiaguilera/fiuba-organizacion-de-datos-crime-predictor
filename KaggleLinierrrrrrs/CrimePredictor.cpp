@@ -1,6 +1,12 @@
 #include "stdafx.h"
 #include "CrimePredictor.h"
 #include <time.h>
+#include "CategoryConstants.h"
+
+#define kCategoryWorkingDuty "TYPE_WORKING_DUTY_"
+#define kCategoryWorkingOff "TYPE_WORKING_OFF_"
+#define kCategoryDayFromWeek "TYPE_DAY_FROM_WEEK_"
+#define kCategoryDayFromWeekend "TYPE_DAY_FROM_WEEKEND_"
 
 CrimePredictor::CrimePredictor() {
 	srand(time(NULL));
@@ -82,3 +88,8 @@ std::string CrimePredictor::getCrimeCategoryPrediction(Crime *crime, Parcel *par
 		index++;
 	}
 }
+
+//float CrimePredictor::getCrimeDayFactor(Crime *crime) {
+	//std::string catergoryName(crime->mCategory);
+	//catergoryName
+//}
