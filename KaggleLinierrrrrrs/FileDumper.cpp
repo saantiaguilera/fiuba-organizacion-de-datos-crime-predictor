@@ -133,4 +133,86 @@ void FileDumper::addToBuffer(std::string& id, std::map<std::string, double>& val
 		<< COMMA
 		<< (values["WEAPON LAWS"] / total)
 		<< EOL;
+
+
+	std::cout << id
+		<< COMMA
+		<< (values["ARSON"] / total)
+		<< COMMA
+		<< (values["ASSAULT"] / total)
+		<< COMMA
+		<< (values["BAD CHECKS"] / total)
+		<< COMMA
+		<< (values["BRIBERY"] / total)
+		<< COMMA
+		<< (values["BURGLARY"] / total)
+		<< COMMA
+		<< (values["DISORDERLY CONDUCT"] / total)
+		<< COMMA
+		<< (values["DRIVING UNDER THE INFLUENCE"] / total)
+		<< COMMA
+		<< (values["DRUG/NARCOTIC"] / total)
+		<< COMMA
+		<< (values["DRUNKENNESS"] / total)
+		<< COMMA
+		<< (values["EMBEZZLEMENT"] / total)
+		<< COMMA
+		<< (values["EXTORTION"] / total)
+		<< COMMA
+		<< (values["FAMILY OFFENSES"] / total)
+		<< COMMA
+		<< (values["FORGERY/COUNTERFEITING"] / total)
+		<< COMMA
+		<< (values["FRAUD"] / total)
+		<< COMMA
+		<< (values["GAMBLING"] / total)
+		<< COMMA
+		<< (values["KIDNAPPING"] / total)
+		<< COMMA
+		<< (values["LARCENY/THEFT"] / total)
+		<< COMMA
+		<< (values["LIQUOR LAWS"] / total)
+		<< COMMA
+		<< (values["LOITERING"] / total)
+		<< COMMA
+		<< (values["MISSING PERSON"] / total)
+		<< COMMA
+		<< (values["NON-CRIMINAL"] / total)
+		<< COMMA
+		<< (values["OTHER OFFENSES"] / total)
+		<< COMMA
+		<< (values["PORNOGRAPHY/OBSCENE MAT"] / total)
+		<< COMMA
+		<< (values["PROSTITUTION"] / total)
+		<< COMMA
+		<< (values["RECOVERED VEHICLE"] / total)
+		<< COMMA
+		<< (values["ROBBERY"] / total)
+		<< COMMA
+		<< (values["RUNAWAY"] / total)
+		<< COMMA
+		<< (values["SECONDARY CODES"] / total)
+		<< COMMA
+		<< (values["SEX OFFENSES FORCIBLE"] / total)
+		<< COMMA
+		<< (values["SEX OFFENSES NON FORCIBLE"] / total)
+		<< COMMA
+		<< (values["STOLEN PROPERTY"] / total)
+		<< COMMA
+		<< (values["SUICIDE"] / total)
+		<< COMMA
+		<< (values["SUSPICIOUS OCC"] / total)
+		<< COMMA
+		<< (values["TREA"] / total)
+		<< COMMA
+		<< (values["TRESPASS"] / total)
+		<< COMMA
+		<< (values["VANDALISM"] / total)
+		<< COMMA
+		<< (values["VEHICLE THEFT"] / total)
+		<< COMMA
+		<< (values["WARRANTS"] / total)
+		<< COMMA
+		<< (values["WEAPON LAWS"] / total)
+		<< std::endl;
 }

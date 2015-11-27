@@ -38,33 +38,33 @@ Crime* CrimeParser::createCrimeFromCSVChunk(const std::string & dataChunk) {
 
 	//Set the type of day
 	std::size_t found = dayOfWeek.find("Monday");
-	DayTime typeOfDay = DAY_FROM_WEEK;
+	DayOfWeek typeOfDay = Monday;
 	if (found != std::string::npos)
-		typeOfDay= DAY_FROM_WEEK;
+		typeOfDay= Monday;
 	else {
 		found = dayOfWeek.find("Tuesday");
 		if (found != std::string::npos)
-			typeOfDay = DAY_FROM_WEEK;
+			typeOfDay = Tuesday;
 		else {
 			found = dayOfWeek.find("Wednesday");
 			if (found != std::string::npos)
-				typeOfDay = DAY_FROM_WEEK;
+				typeOfDay = Wednesday;
 			else {
 				found = dayOfWeek.find("Thursday");
 				if (found != std::string::npos)
-					typeOfDay = DAY_FROM_WEEK;
+					typeOfDay = Thursday;
 				else {
 					found = dayOfWeek.find("Friday");
 					if (found != std::string::npos)
-						typeOfDay = DAY_FROM_WEEK;
+						typeOfDay = Friday;
 					else {
 						found = dayOfWeek.find("Saturday");
 						if (found != std::string::npos)
-							typeOfDay = DAY_FROM_WEEKEND;
+							typeOfDay = Saturday;
 						else {
 							found = dayOfWeek.find("Sunday");
 							if (found != std::string::npos)
-								typeOfDay = DAY_FROM_WEEKEND;
+								typeOfDay = Sunday;
 						}
 					}
 				}
@@ -72,16 +72,22 @@ Crime* CrimeParser::createCrimeFromCSVChunk(const std::string & dataChunk) {
 		}
 	}
 
+	/*
 	//Set the working duty
 	WorkingDuty typeOfHour = WORKING_DUTY_OFF;
 	std::string onlyHour = hour.substr(1, 2);
 	if (std::stoi(onlyHour) < 18 && std::stoi(onlyHour) >= 9)
 		typeOfHour = WORKING_DUTY;
-
+	*/
 	//Remove "" from categories
 	category = category.substr(1, category.length() - 2);
 
-	return new Crime(typeOfDay, typeOfHour, category, address, std::stod(x), std::stod(y));
+	//return new Crime(typeOfDay, typeOfHour, category, address, std::stod(x), std::stod(y));
+
+	std::string onlyHourS = hour.substr(1, 2);
+	int onlyHour = std::stoi(onlyHourS);
+	return new Crime(onlyHour, typeOfDay, category,
+		address, std::stod(x), std::stod(y));
 }
 
 bool CrimeParser::readFileWithManager(DataManager* dataManager)
@@ -101,7 +107,7 @@ bool CrimeParser::readFileWithManager(DataManager* dataManager)
 		std::getline(file, currentLine);
 
 		//Iterate over each line of the file (and, for testing purposes, only the first 5 of them)
-		while (std::getline(file, currentLine) && i<0) {
+		while (std::getline(file, currentLine) && i < 10000) {
 				//create a Crime from the chunk we init before and print the values we got.
 				Crime* crime(createCrimeFromCSVChunk(currentLine));
 

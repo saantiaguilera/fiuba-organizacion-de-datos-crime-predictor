@@ -24,7 +24,8 @@
 #define kSanFranciscoMatrixRowNumber 40
 #define kSanFranciscoMatrixColNumber 35
 
-enum DayTime { DAY_FROM_WEEK = 0, DAY_FROM_WEEKEND = 1 };
+//enum DayOfWeek { DAY_FROM_WEEK = 0, DAY_FROM_WEEKEND = 1 };
+enum DayOfWeek { Monday = 0, Tuesday = 1, Wednesday = 2, Thursday = 3, Friday = 4, Saturday = 5, Sunday = 6 };
 enum WorkingDuty { WORKING_DUTY = 0, WORKING_DUTY_OFF = 1 };
 
 //#define CASES_TO_PREDICT 200

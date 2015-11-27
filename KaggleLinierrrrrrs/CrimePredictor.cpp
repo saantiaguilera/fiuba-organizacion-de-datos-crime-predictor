@@ -17,7 +17,7 @@ CrimePredictor::~CrimePredictor()
 
 void CrimePredictor::predictCrime(DataManager *dataManager) {
 	//Ahora ya esta adentro del proyecto. nombre "crimesToPredict.csv"
-	std::ifstream file("crimesToPredict.csv");
+	std::ifstream file("importantTrain.csv");
 
 	FileDumper* fileDumper = new FileDumper();
 	
@@ -49,23 +49,26 @@ void CrimePredictor::predictCrime(DataManager *dataManager) {
 				categoryHourConstants = &categoryConstantsManager->workingOffCategoryConstants;
 			}
 
-			if (crime->mDayTime == DAY_FROM_WEEK)
+			/*if (crime->dayOfWeek == DAY_FROM_WEEK)
 			{
 				categoryDaysConstants = &categoryConstantsManager->weekDayCategoryConstants;
 			}
 			else
 			{
 				categoryDaysConstants = &categoryConstantsManager->weekendCategoryConstants;
-			}
+			}*/
 
-			double total = 0;
+			/*double total = 0;
 			for (std::map<std::string, int>::iterator it = parcel->crimesCountMap.begin(); it != parcel->crimesCountMap.end(); ++it) {
-				finalValues[it->first] = (it->second / (double) parcel->crimes.size()) * categoryHourConstants->find(it->first)->second * categoryDaysConstants->find(it->first)->second;
+				finalValues[it->first] = (it->second / (double)parcel->crimes.size()) *categoryHourConstants->find(it->first)->second * categoryDaysConstants->find(it->first)->second;
 				total += finalValues[it->first];
 			}
-
 			fileDumper->dumpPrediction(crime->mId, finalValues, total);
-		
+			*/
+
+			double total = 1;
+			fileDumper->dumpPrediction(crime->mId, this->getMostProbableCategory(crime, parcel), total);
+
 			//delete the crime pointer which dissappears after this scope (not the parcel since its from the DataManager which is currently used and it will be deleted on ~DataManager)
 			delete crime;
 		}
@@ -74,6 +77,30 @@ void CrimePredictor::predictCrime(DataManager *dataManager) {
 	}
 
 	delete fileDumper;
+}
+
+std::map<std::string, double> CrimePredictor::getMostProbableCategory(Crime *crimeToPredict, Parcel *parcel) {
+	std::map<std::string, double> finalValues;
+	std::map<std::string, double> dayOfWeekValues;
+
+	for each (Crime *crime in parcel->crimes)
+	{
+		int hourSimilarity = (24 - abs(crime->hour - crimeToPredict->hour)) > (abs(crime->hour - crimeToPredict->hour)) ? (24 - abs(crime->hour - crimeToPredict->hour)) : abs(crime->hour - crimeToPredict->hour);
+		if ((hourSimilarity / 24.0) > finalValues[crime->mCategory])
+		{
+			finalValues[crime->mCategory] = hourSimilarity / 24.0;
+		}
+
+		int daySimilarity = (7 - abs(crime->dayOfWeek - crimeToPredict->dayOfWeek)) > (abs(crime->dayOfWeek - crimeToPredict->hour)) ? (7 - abs(crime->dayOfWeek - crimeToPredict->dayOfWeek)) : (abs(crime->dayOfWeek - crimeToPredict->hour));
+		if ((daySimilarity / 7.0) > dayOfWeekValues[crime->mCategory])
+		{
+			dayOfWeekValues[crime->mCategory] = daySimilarity / 7.0;
+		}
+
+
+	}   
+
+	return finalValues;
 }
 
 void CrimePredictor::getDataForCrime(Crime *currentCrime, Parcel *parcel, long double &maxDistance) {
@@ -102,6 +129,17 @@ Crime* CrimePredictor::createCrimeFromCSVChunk(const std::string & dataChunk) {
 	//Gotta catch em all
 	char separator(',');
 
+	std::string date;
+	std::getline(aux, date, separator);
+	std::getline(aux, hour, separator);
+	std::getline(aux, category, separator);
+	std::getline(aux, dayOfWeek, separator);
+	std::getline(aux, address, separator);
+	std::getline(aux, x, separator);
+	std::getline(aux, y, separator);
+
+
+	/*
 	std::getline(aux, id, separator);
 	std::getline(aux, hour, separator);
 	std::getline(aux, dayOfWeek, separator);
@@ -111,36 +149,36 @@ Crime* CrimePredictor::createCrimeFromCSVChunk(const std::string & dataChunk) {
 
 	std::getline(aux, x, separator);
 	std::getline(aux, y, separator);
-
+	*/
 	//Set the type of day
 	std::size_t found = dayOfWeek.find("Monday");
-	DayTime typeOfDay = DAY_FROM_WEEK;
+	DayOfWeek typeOfDay = Monday;
 	if (found != std::string::npos)
-		typeOfDay = DAY_FROM_WEEK;
+		typeOfDay = Monday;
 	else {
 		found = dayOfWeek.find("Tuesday");
 		if (found != std::string::npos)
-			typeOfDay = DAY_FROM_WEEK;
+			typeOfDay = Tuesday;
 		else {
 			found = dayOfWeek.find("Wednesday");
 			if (found != std::string::npos)
-				typeOfDay = DAY_FROM_WEEK;
+				typeOfDay = Wednesday;
 			else {
 				found = dayOfWeek.find("Thursday");
 				if (found != std::string::npos)
-					typeOfDay = DAY_FROM_WEEK;
+					typeOfDay = Thursday;
 				else {
 					found = dayOfWeek.find("Friday");
 					if (found != std::string::npos)
-						typeOfDay = DAY_FROM_WEEK;
+						typeOfDay = Friday;
 					else {
 						found = dayOfWeek.find("Saturday");
 						if (found != std::string::npos)
-							typeOfDay = DAY_FROM_WEEKEND;
+							typeOfDay = Saturday;
 						else {
 							found = dayOfWeek.find("Sunday");
 							if (found != std::string::npos)
-								typeOfDay = DAY_FROM_WEEKEND;
+								typeOfDay = Sunday;
 						}
 					}
 				}
@@ -154,5 +192,10 @@ Crime* CrimePredictor::createCrimeFromCSVChunk(const std::string & dataChunk) {
 	if (std::stoi(onlyHour) < 18 && std::stoi(onlyHour) >= 9)
 		typeOfHour = WORKING_DUTY;
 
-	return new Crime(id, typeOfDay, typeOfHour, address, std::stod(x), std::stod(y));
+	//return new Crime(id, typeOfDay, typeOfHour, address, std::stod(x), std::stod(y));
+
+
+	//Remove "" from categories
+	category = category.substr(1, category.length() - 2);
+	return new Crime(std::stoi(onlyHour), typeOfDay, category, address, std::stod(x), std::stod(y));
 }
