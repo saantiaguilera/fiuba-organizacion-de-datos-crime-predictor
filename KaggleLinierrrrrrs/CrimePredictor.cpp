@@ -34,14 +34,14 @@ void CrimePredictor::predictCrime(DataManager *dataManager) {
 		std::getline(file, currentLine);
 
 		//Iterate over each line of the file (and, for testing purposes, only the first 5 of them)
-		while (std::getline(file, currentLine) && totalCases < 1000) {
+		while (std::getline(file, currentLine) && totalCases < 1) {
 			Crime* crime = this->crimeParser->createCrimeFromCSVChunk(currentLine);
 
 			Parcel *parcel(dataManager->getParcelOfCrime(crime));
 
 			std::string freqCategories(this->crimesFrequenciesForParcel(crime, parcel));
 
-			if (freqCategories.compare(crime->mCategory)) {
+			if (freqCategories.find(crime->mCategory) != std::string::npos) {
 				positiveCases++;
 			}
 
@@ -61,6 +61,7 @@ std::string CrimePredictor::crimesFrequenciesForParcel(Crime *crime, Parcel *par
 	partialSum = 0;
 	std::map<std::string, float> categoryHourConstants;
 	std::map<std::string, float> categoryDaysConstants;
+	crimeFreqs.clear();
 	//std::map<std::string, float> crimesProbability;
 
 	if ((std::stoi(crime->mHour.substr(1, 2)) < 18) && (std::stoi(crime->mHour.substr(1, 2)) >= 9)){
@@ -89,7 +90,7 @@ std::string CrimePredictor::crimesFrequenciesForParcel(Crime *crime, Parcel *par
 		float categoryHourFactor = categoryHourConstants.find(keyName)->second;
 		float categoryDayFactor = categoryDaysConstants.find(keyName)->second;
 
-		partialSum += crimeFreq * categoryHourFactor * categoryDayFactor;
+		partialSum += crimeFreq *categoryHourFactor *categoryDayFactor;
 		crimeFreqs.push_back(partialSum);
 		//crimesProbability[it->first] = crimeFreq * categoryHourFactor * categoryDayFactor;
 		//partialSum += crimesProbability[it->first];

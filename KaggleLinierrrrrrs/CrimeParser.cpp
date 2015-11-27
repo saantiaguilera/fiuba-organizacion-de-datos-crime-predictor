@@ -57,9 +57,9 @@ bool CrimeParser::readFileWithManager(DataManager* dataManager)
 		std::getline(file, currentLine);
 
 		//Iterate over each line of the file (and, for testing purposes, only the first 5 of them)
-		while (std::getline(file, currentLine) && i < 10000) {
-			if (i != 0)
-			{
+		while (std::getline(file, currentLine) && i < 1) {
+			//if (i != 0)
+			//{
 				//create a Crime from the chunk we init before and print the values we got.
 				Crime* crime(createCrimeFromCSVChunk(currentLine));
 
@@ -67,7 +67,7 @@ bool CrimeParser::readFileWithManager(DataManager* dataManager)
 
 				//Uncomment if you want to see the descript of a Crime (beware, reduce the index of i<VALUE.
 				//crime->printValues();
-			}
+			//}
 			
 
 			i++;
