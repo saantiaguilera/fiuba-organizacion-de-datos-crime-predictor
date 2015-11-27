@@ -59,9 +59,9 @@ void CrimePredictor::predictCrime(DataManager *dataManager) {
 			}
 
 			double total = 0;
-			for (std::map<std::string, int>::iterator it = parcel->crimesCountMap.begin(); it != parcel->crimesCountMap.end(); ++it) {
-				finalValues[it->first] = (it->second / (double) parcel->crimes.size()) * categoryHourConstants->find(it->first)->second * categoryDaysConstants->find(it->first)->second;
-				total += finalValues[it->first];
+			for (auto const &keyval : parcel->crimesCountMap) {
+				finalValues[keyval.first] = (keyval.second / (double)parcel->crimes.size()) * categoryHourConstants->find(keyval.first)->second * categoryDaysConstants->find(keyval.first)->second;
+				total += finalValues[keyval.first];
 			}
 
 			fileDumper->dumpPrediction(crime->mId, finalValues, total);
