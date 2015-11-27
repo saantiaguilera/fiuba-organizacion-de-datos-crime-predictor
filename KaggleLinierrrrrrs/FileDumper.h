@@ -14,13 +14,13 @@ private:
 	//Dumps the initial headers (see define in .cpp)
 	void dumpHeaders();
 	//Should transform accordingly to the data need to store. Contains the algorythm that makes the percentages for each category
-	void addToBuffer(std::string& id, std::map<std::string, long double>& pointsMap, long double& totalPoints);
+	void addToBuffer(std::string& id, std::map<std::string, double>& values, double& total);
 public:
 	//Initializers
 	FileDumper();
 	~FileDumper();
 	//Should transform accordingly to the data need to store. Algorythm for each category is implemented in addToBuffer not here
-	void dumpPrediction(std::string& id, std::map<std::string, long double>& pointsMap, long double& totalPoints);
+	void dumpPrediction(std::string& id, std::map<std::string, double>& values, double& total);
 	//Flushes the buffer contents in the file
 	void flushBuffer();
 };

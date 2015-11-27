@@ -6,6 +6,7 @@
 
 class CrimePredictor {
 private:
+	CategoryConstantsManage *categoryConstantsManager;
 	void getDataForCrime(Crime * currentCrime, Parcel * parcel, long double & maxDistance);
 	Crime * createCrimeFromCSVChunk(const std::string & dataChunk);
 public:

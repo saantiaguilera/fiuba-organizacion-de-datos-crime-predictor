@@ -33,12 +33,12 @@ void FileDumper::dumpHeaders() {
 }
 
 //Dont change
-void FileDumper::dumpPrediction(std::string& id, std::map<std::string, long double>& pointsMap, long double& totalPoints) {
+void FileDumper::dumpPrediction(std::string& id, std::map<std::string, double>& values, double& points) {
 	if (count >= MAX_CRIMES_IN_BUFFER) {
 		flushBuffer();
 	}
 
-	addToBuffer(id, pointsMap, totalPoints);
+	addToBuffer(id, values, points);
 	count++;
 }
 
@@ -52,85 +52,85 @@ void FileDumper::flushBuffer() {
 
 //On each '0' goes the percentage for each category. See the HEADERS define to know the order. 
 //Dont change the structure or the COMMA / << / buffer / EOL things. Its optimized this way
-void FileDumper::addToBuffer(std::string& id, std::map<std::string, long double>& pointsMap, long double& totalPoints) {
+void FileDumper::addToBuffer(std::string& id, std::map<std::string, double>& values, double& total) {
 	buffer << id
 		<< COMMA
-		<< 0
+		<< (values["ARSON"] / total)
 		<< COMMA
-		<< 0
+		<< (values["ASSAULT"] / total)
 		<< COMMA
-		<< 0
+		<< (values["BAD CHECKS"] / total)
 		<< COMMA
-		<< 0
+		<< (values["BRIBERY"] / total)
 		<< COMMA
-		<< 0
+		<< (values["BURGLARY"] / total)
 		<< COMMA
-		<< 0
+		<< (values["DISORDERLY CONDUCT"] / total)
 		<< COMMA
-		<< 0
+		<< (values["DRIVING UNDER THE INFLUENCE"] / total)
 		<< COMMA
-		<< 0
+		<< (values["DRUG/NARCOTIC"] / total)
 		<< COMMA
-		<< 0
+		<< (values["DRUNKENNESS"] / total)
 		<< COMMA
-		<< 0
+		<< (values["EMBEZZLEMENT"] / total)
 		<< COMMA
-		<< 0
+		<< (values["EXTORTION"] / total)
 		<< COMMA
-		<< 0
+		<< (values["FAMILY OFFENSES"] / total)
 		<< COMMA
-		<< 0
+		<< (values["FORGERY/COUNTERFEITING"] / total)
 		<< COMMA
-		<< 0
+		<< (values["FRAUD"] / total)
 		<< COMMA
-		<< 0
+		<< (values["GAMBLING"] / total)
 		<< COMMA
-		<< 0
+		<< (values["KIDNAPPING"] / total)
 		<< COMMA
-		<< 0
+		<< (values["LARCENY/THEFT"] / total)
 		<< COMMA
-		<< 0
+		<< (values["LIQUOR LAWS"] / total)
 		<< COMMA
-		<< 0
+		<< (values["LOITERING"] / total)
 		<< COMMA
-		<< 0
+		<< (values["MISSING PERSON"] / total)
 		<< COMMA
-		<< 0
+		<< (values["NON-CRIMINAL"] / total)
 		<< COMMA
-		<< 0
+		<< (values["OTHER OFFENSES"] / total)
 		<< COMMA
-		<< 0
+		<< (values["PORNOGRAPHY/OBSCENE MAT"] / total)
 		<< COMMA
-		<< 0
+		<< (values["PROSTITUTION"] / total)
 		<< COMMA
-		<< 0
+		<< (values["RECOVERED VEHICLE"] / total)
 		<< COMMA
-		<< 0
+		<< (values["ROBBERY"] / total)
 		<< COMMA
-		<< 0
+		<< (values["RUNAWAY"] / total)
 		<< COMMA
-		<< 0
+		<< (values["SECONDARY CODES"] / total)
 		<< COMMA
-		<< 0
+		<< (values["SEX OFFENSES FORCIBLE"] / total)
 		<< COMMA
-		<< 0
+		<< (values["SEX OFFENSES NON FORCIBLE"] / total)
 		<< COMMA
-		<< 0
+		<< (values["STOLEN PROPERTY"] / total)
 		<< COMMA
-		<< 0
+		<< (values["SUICIDE"] / total)
 		<< COMMA
-		<< 0
+		<< (values["SUSPICIOUS OCC"] / total)
 		<< COMMA
-		<< 0
+		<< (values["TREA"] / total)
 		<< COMMA
-		<< 0
+		<< (values["TRESPASS"] / total)
 		<< COMMA
-		<< 0
+		<< (values["VANDALISM"] / total)
 		<< COMMA
-		<< 0
+		<< (values["VEHICLE THEFT"] / total)
 		<< COMMA
-		<< 0
+		<< (values["WARRANTS"] / total)
 		<< COMMA
-		<< 0
+		<< (values["WEAPON LAWS"] / total)
 		<< EOL;
 }

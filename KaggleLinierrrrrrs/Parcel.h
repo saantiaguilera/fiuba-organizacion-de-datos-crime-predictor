@@ -5,9 +5,8 @@
 #include <map>
 
 class Parcel {
-private:
-	std::map<std::string, int> crimesCountMap;
 public:
+	std::map<std::string, int> crimesCountMap;
 	Parcel();
 	~Parcel();
 	std::vector<Crime*> crimes;

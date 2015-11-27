@@ -7,11 +7,12 @@
 
 CrimePredictor::CrimePredictor() {
 	srand(time(NULL));
+	categoryConstantsManager = new CategoryConstantsManage();
 }
 
 CrimePredictor::~CrimePredictor()
 {
-
+	delete categoryConstantsManager;
 }
 
 void CrimePredictor::predictCrime(DataManager *dataManager) {
@@ -24,9 +25,6 @@ void CrimePredictor::predictCrime(DataManager *dataManager) {
 	if (file.good()) {
 		//Init variables we will be using in the loop
 		std::string currentLine;
-		long double maxDistance;
-		long double totalPoints;
-		std::map<std::string, long double> categoryPointsMap;
 
 		//First line is  the row indicator, skip it.
 		std::getline(file, currentLine);
@@ -34,14 +32,39 @@ void CrimePredictor::predictCrime(DataManager *dataManager) {
 		//Iterate over each line of the file (and, for testing purposes, only the first 5 of them)
 		while (std::getline(file, currentLine)) {
 			//Clean stuff
-			totalPoints = 1;
-			maxDistance = 0;
-			categoryPointsMap.clear();
 
 			//Get crime and parcel asociated
 			Crime* crime = this->createCrimeFromCSVChunk(currentLine);
+
+			Parcel* parcel = dataManager->getParcelOfCrime(crime);
 			
-			fileDumper->dumpPrediction(crime->mId, categoryPointsMap, totalPoints);
+			std::map<std::string, double> finalValues;
+			std::map<std::string, float>* categoryHourConstants;
+			std::map<std::string, float>* categoryDaysConstants;
+
+			if (crime->mWorkingDuty==WORKING_DUTY) {
+				categoryHourConstants = &categoryConstantsManager->workingDutyCategoryConstants;
+			}
+			else {
+				categoryHourConstants = &categoryConstantsManager->workingOffCategoryConstants;
+			}
+
+			if (crime->mDayTime == DAY_FROM_WEEK)
+			{
+				categoryDaysConstants = &categoryConstantsManager->weekDayCategoryConstants;
+			}
+			else
+			{
+				categoryDaysConstants = &categoryConstantsManager->weekendCategoryConstants;
+			}
+
+			double total = 0;
+			for (std::map<std::string, int>::iterator it = parcel->crimesCountMap.begin(); it != parcel->crimesCountMap.end(); ++it) {
+				finalValues[it->first] = (it->second / (double) parcel->crimes.size()) * categoryHourConstants->find(it->first)->second * categoryDaysConstants->find(it->first)->second;
+				total += finalValues[it->first];
+			}
+
+			fileDumper->dumpPrediction(crime->mId, finalValues, total);
 		
 			//delete the crime pointer which dissappears after this scope (not the parcel since its from the DataManager which is currently used and it will be deleted on ~DataManager)
 			delete crime;
