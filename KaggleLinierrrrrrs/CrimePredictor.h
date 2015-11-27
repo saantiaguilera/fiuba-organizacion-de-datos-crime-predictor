@@ -5,12 +5,13 @@
 #include "Parcel.h"
 #include "DataManager.h"
 #include "CrimeParser.h"
+#include "CategoryConstantsManage.h"
 
 class CrimePredictor {
 private:
 	std::vector<float> crimeFreqs;
-	std::string CrimePredictor::crimesFrequenciesForParcel(Crime *crime, Parcel *parcel);
-	std::string getCrimeCategoryPrediction(Crime * crime, Parcel * parcel);
+	std::map<std::string, float> CrimePredictor::crimesFrequenciesForParcel(Crime *crime, Parcel *parcel);
+	CategoryConstantsManage *categoryConstantsManager;
 public:
 	CrimePredictor();
 	~CrimePredictor();

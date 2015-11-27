@@ -12,6 +12,9 @@ public:
 	bool CrimeParser::readFileWithManager(DataManager* crimeParserManager);
 	void createFileWithDefinitionsForCategories();
 	Crime* createCrimeFromCSVChunk(const std::string & dataChunk);
+	//
+	std::map<std::string, std::vector<float>> crimesDayFreq;
+	//
 private:
 	std::map<std::string, std::vector<double>> crimesHourFreq;
 };

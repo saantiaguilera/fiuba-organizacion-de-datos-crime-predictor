@@ -16,8 +16,6 @@ int main() {
 	std::cout << "Numero de crimenes no ingresados a la matriz: " << dataManager->numberOfCrimesOutOfMatrix << std::endl;
 	std::cout << "##################################################" << std::endl;
 	std::cout << "##################################################" << std::endl;
-
-	//crimeParser->getCrimesHourFreq();
 	
 	CrimePredictor *crimePredictor = new CrimePredictor();
 	crimePredictor->crimeParser = crimeParser;

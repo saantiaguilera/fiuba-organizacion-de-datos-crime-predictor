@@ -8,6 +8,12 @@ Crime::Crime(std::string date, std::string hour, std::string category, std::stri
 	mLongitude(longitude) {
 }
 
+Crime::Crime(std::string date, std::string hour, std::string category, std::string dow,
+	std::string adress) :
+	mDate(date), mHour(hour), mCategory(category),
+	mDayOfWeek(dow), mAdress(adress) {
+}
+
 Crime::Crime() {
 }
 

@@ -6,6 +6,8 @@ class Crime {
 private:
 	
 public:
+	Crime::Crime(std::string date, std::string hour, std::string category, std::string dow,
+		std::string adress);
 	Crime();
 	Crime(std::string date, std::string hour, std::string category, std::string dayOfWeek, std::string address, double longitude, double latitude);
 	~Crime();
