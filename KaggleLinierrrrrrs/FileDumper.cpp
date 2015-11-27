@@ -44,6 +44,7 @@ void FileDumper::dumpPrediction(std::string& id, std::map<std::string, double>& 
 
 //Dont change
 void FileDumper::flushBuffer() {
+	std::cout << "flushing a set of " << count << "\n";
 	dumpFile << buffer.str();
 	buffer.clear();
 	buffer.str(std::string());
