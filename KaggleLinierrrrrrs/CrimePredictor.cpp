@@ -59,9 +59,10 @@ void CrimePredictor::predictCrime(DataManager *dataManager) {
 			}
 
 			double total = 0;
-			for (auto const &keyval : parcel->crimesCountMap) {
-				finalValues[keyval.first] = (keyval.second / (double)parcel->crimes.size()) * categoryHourConstants->find(keyval.first)->second * categoryDaysConstants->find(keyval.first)->second;
-				total += finalValues[keyval.first];
+			const double sizeOfParcel = parcel->crimes.size();
+			for (auto const &pair : parcel->crimesCountMap) {
+				finalValues[pair.first] = (pair.second / sizeOfParcel) * categoryHourConstants->find(pair.first)->second * categoryDaysConstants->find(pair.first)->second;
+				total += finalValues[pair.first];
 			}
 
 			fileDumper->dumpPrediction(crime->mId, finalValues, total);
