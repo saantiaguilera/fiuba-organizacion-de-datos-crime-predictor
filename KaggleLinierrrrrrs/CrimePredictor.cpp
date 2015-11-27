@@ -40,10 +40,10 @@ void CrimePredictor::predictCrime(DataManager *dataManager) {
 			std::map<std::string, float> freqCategories(this->crimesFrequenciesForParcel(crime, parcel));
 
 			totalCases++;
-			std::cout << "Crimen de cat a predecir: " << crime->mCategory << std::endl;
-			for (std::map<std::string, float>::iterator it = freqCategories.begin(); it != freqCategories.end(); ++it) {
-				std::cout << "Category " << it->first << " P: " << it->second << std::endl;
-			}
+			//std::cout << "Crimen de cat a predecir: " << crime->mCategory << std::endl;
+			//for (std::map<std::string, float>::iterator it = freqCategories.begin(); it != freqCategories.end(); ++it) {
+				//std::cout << "Category " << it->first << " P: " << it->second << std::endl;
+			//}
 			//delete the crime pointer which dissappears after this scope (not the parcel since its from the DataManager which is currently used and it will be deleted on ~DataManager)
 			delete crime;
 		}

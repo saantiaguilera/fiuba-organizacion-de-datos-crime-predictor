@@ -23,6 +23,7 @@ int main() {
 
 	std::cin.get();
 
+	delete crimePredictor;
 	delete crimeParser;
 	delete dataManager;
 
