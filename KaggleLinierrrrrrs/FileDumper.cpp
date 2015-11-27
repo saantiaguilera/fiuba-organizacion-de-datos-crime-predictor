@@ -3,23 +3,20 @@
 
 #define HEADERS "Id,ARSON,ASSAULT,BAD CHECKS,BRIBERY,BURGLARY,DISORDERLY CONDUCT,DRIVING UNDER THE INFLUENCE,DRUG/NARCOTIC,DRUNKENNESS,EMBEZZLEMENT,EXTORTION,FAMILY OFFENSES,FORGERY/COUNTERFEITING,FRAUD,GAMBLING,KIDNAPPING,LARCENY/THEFT,LIQUOR LAWS,LOITERING,MISSING PERSON,NON-CRIMINAL,OTHER OFFENSES,PORNOGRAPHY/OBSCENE MAT,PROSTITUTION,RECOVERED VEHICLE,ROBBERY,RUNAWAY,SECONDARY CODES,SEX OFFENSES FORCIBLE,SEX OFFENSES NON FORCIBLE,STOLEN PROPERTY,SUICIDE,SUSPICIOUS OCC,TREA,TRESPASS,VANDALISM,VEHICLE THEFT,WARRANTS,WEAPON LAWS\n"
 #define COMMA ","
-#define MAX_CRIMES_IN_BUFFER 1000
+#define EOL "\n"
+#define MAX_CRIMES_IN_BUFFER 50000
 
 FileDumper::FileDumper() : count(0) {
-	fopen_s(&dumpFile, "dump.csv", "w+");
-
-	if (dumpFile == NULL)
-		exit(-1);
-
+	dumpFile.open("dump.csv", std::ofstream::out | std::ofstream::trunc);
 	dumpHeaders();
 }
 
 FileDumper::~FileDumper() {
-	fclose(dumpFile);
+	dumpFile.close();
 }
 
 void FileDumper::dumpHeaders() {
-	fprintf(dumpFile, HEADERS);
+	dumpFile << HEADERS;
 }
 
 void FileDumper::dumpPrediction(std::string& id, std::map<std::string, long double>& pointsMap, long double& totalPoints) {
@@ -32,7 +29,7 @@ void FileDumper::dumpPrediction(std::string& id, std::map<std::string, long doub
 }
 
 void FileDumper::flushBuffer() {
-	fprintf(dumpFile, buffer.str().c_str());
+	dumpFile << buffer.str();
 	buffer.clear();
 	buffer.str(std::string());
 	count = 0;
@@ -41,82 +38,82 @@ void FileDumper::flushBuffer() {
 void FileDumper::addToBuffer(std::string& id, std::map<std::string, long double>& pointsMap, long double& totalPoints) {
 	buffer << id
 		<< COMMA
-		<< (pointsMap["ARSON"] / totalPoints)
+		<< 0
 		<< COMMA
-		<< (pointsMap["ASSAULT"] / totalPoints)
+		<< 0
 		<< COMMA
-		<< (pointsMap["BAD CHECKS"] / totalPoints)
+		<< 0
 		<< COMMA
-		<< (pointsMap["BRIBERY"] / totalPoints)
+		<< 0
 		<< COMMA
-		<< (pointsMap["BURGLARY"] / totalPoints)
+		<< 0
 		<< COMMA
-		<< (pointsMap["DISORDERLY CONDUCT"] / totalPoints)
+		<< 0
 		<< COMMA
-		<< (pointsMap["DRIVING UNDER THE INFLUENCE"] / totalPoints)
+		<< 0
 		<< COMMA
-		<< (pointsMap["DRUG/NARCOTIC"] / totalPoints)
+		<< 0
 		<< COMMA
-		<< (pointsMap["DRUNKENNESS"] / totalPoints)
+		<< 0
 		<< COMMA
-		<< (pointsMap["EMBEZZLEMENT"] / totalPoints)
+		<< 0
 		<< COMMA
-		<< (pointsMap["EXTORTION"] / totalPoints)
+		<< 0
 		<< COMMA
-		<< (pointsMap["FAMILY OFFENSES"] / totalPoints)
+		<< 0
 		<< COMMA
-		<< (pointsMap["FORGERY/COUNTERFEITING"] / totalPoints)
+		<< 0
 		<< COMMA
-		<< (pointsMap["FRAUD"] / totalPoints)
+		<< 0
 		<< COMMA
-		<< (pointsMap["GAMBLING"] / totalPoints)
+		<< 0
 		<< COMMA
-		<< (pointsMap["KIDNAPPING"] / totalPoints)
+		<< 0
 		<< COMMA
-		<< (pointsMap["LARCENY/THEFT"] / totalPoints)
+		<< 0
 		<< COMMA
-		<< (pointsMap["LIQUOR LAWS"] / totalPoints)
+		<< 0
 		<< COMMA
-		<< (pointsMap["LOITERING"] / totalPoints)
+		<< 0
 		<< COMMA
-		<< (pointsMap["MISSING PERSON"] / totalPoints)
+		<< 0
 		<< COMMA
-		<< (pointsMap["NON-CRIMINAL"] / totalPoints)
+		<< 0
 		<< COMMA
-		<< (pointsMap["OTHER OFFENSES"] / totalPoints)
+		<< 0
 		<< COMMA
-		<< (pointsMap["PORNOGRAPHY/OBSCENE MAT"] / totalPoints)
+		<< 0
 		<< COMMA
-		<< (pointsMap["PROSTITUTION"] / totalPoints)
+		<< 0
 		<< COMMA
-		<< (pointsMap["RECOVERED VEHICLE"] / totalPoints)
+		<< 0
 		<< COMMA
-		<< (pointsMap["ROBBERY"] / totalPoints)
+		<< 0
 		<< COMMA
-		<< (pointsMap["RUNAWAY"] / totalPoints)
+		<< 0
 		<< COMMA
-		<< (pointsMap["SECONDARY CODES"] / totalPoints)
+		<< 0
 		<< COMMA
-		<< (pointsMap["SEX OFFENSES FORCIBLE"] / totalPoints)
+		<< 0
 		<< COMMA
-		<< (pointsMap["SEX OFFENSES NON FORCIBLE"] / totalPoints)
+		<< 0
 		<< COMMA
-		<< (pointsMap["STOLEN PROPERTY"] / totalPoints)
+		<< 0
 		<< COMMA
-		<< (pointsMap["SUICIDE"] / totalPoints)
+		<< 0
 		<< COMMA
-		<< (pointsMap["SUSPICIOUS OCC"] / totalPoints)
+		<< 0
 		<< COMMA
-		<< (pointsMap["TREA"] / totalPoints)
+		<< 0
 		<< COMMA
-		<< (pointsMap["TRESPASS"] / totalPoints)
+		<< 0
 		<< COMMA
-		<< (pointsMap["VANDALISM"] / totalPoints)
+		<< 0
 		<< COMMA
-		<< (pointsMap["VEHICLE THEFT"] / totalPoints)
+		<< 0
 		<< COMMA
-		<< (pointsMap["WARRANTS"] / totalPoints)
+		<< 0
 		<< COMMA
-		<< (pointsMap["WEAPON LAWS"] / totalPoints)
-		<< "\n";
+		<< 0
+		<< EOL;
 }
