@@ -18,8 +18,8 @@ Using things this way, times are:
 
 //Dont change
 FileDumper::FileDumper() : count(0) {
-	dumpFile.open("dump.csv", std::ofstream::out | std::ofstream::app);
-	//dumpHeaders();
+	dumpFile.open("dump.csv", std::ofstream::out | std::ofstream::trunc);
+	dumpHeaders();
 }
 
 //Dont change
