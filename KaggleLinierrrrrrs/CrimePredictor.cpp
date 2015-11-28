@@ -1,12 +1,10 @@
 #include "stdafx.h"
 #include "CrimePredictor.h"
-#include <time.h>
 #include <map>
 #include "FileDumper.h"
 
 
 CrimePredictor::CrimePredictor() {
-	srand(time(NULL));
 	categoryConstantsManager = new CategoryConstantsManage();
 }
 
@@ -25,6 +23,8 @@ void CrimePredictor::predictCrime(DataManager *dataManager) {
 	if (file.good()) {
 		//Init variables we will be using in the loop
 		std::string currentLine;
+		std::map<std::string, float>* categoryHourConstants;
+		std::map<std::string, float>* categoryDaysConstants;
 
 		//First line is  the row indicator, skip it.
 		std::getline(file, currentLine);
@@ -38,29 +38,25 @@ void CrimePredictor::predictCrime(DataManager *dataManager) {
 
 			Parcel* parcel = dataManager->getParcelOfCrime(crime);
 
+			//Create mapper needed for the final values (maybe its more efficient outside loop and clear it ?)
 			std::map<std::string, double> finalValues;
-			std::map<std::string, float>* categoryHourConstants;
-			std::map<std::string, float>* categoryDaysConstants;
 
-			if (crime->mWorkingDuty == WORKING_DUTY) {
+			//Get the corresponding map according to the crime to predict
+			if (crime->mWorkingDuty == WORKING_DUTY) 
 				categoryHourConstants = &categoryConstantsManager->workingDutyCategoryConstants;
-			}
-			else {
-				categoryHourConstants = &categoryConstantsManager->workingOffCategoryConstants;
-			}
+			else categoryHourConstants = &categoryConstantsManager->workingOffCategoryConstants;
 
 			if (crime->mDayTime == DAY_FROM_WEEK)
-			{
 				categoryDaysConstants = &categoryConstantsManager->weekDayCategoryConstants;
-			}
-			else
-			{
-				categoryDaysConstants = &categoryConstantsManager->weekendCategoryConstants;
-			}
-
+			else categoryDaysConstants = &categoryConstantsManager->weekendCategoryConstants;
+			
+			//Create percentages based on data we have
 			double total = 0;
 			if (parcel != NULL) {
-				double sizeOfParcel = parcel->crimes.size() == 0 ? 1 : parcel->crimes.size();
+				double sizeOfParcel = parcel->crimes.size();
+				if (sizeOfParcel == 0)
+					sizeOfParcel = 1;
+
 				for (auto const &pair : parcel->crimesCountMap) {
 					finalValues[pair.first] = (pair.second / sizeOfParcel) * categoryHourConstants->find(pair.first)->second * categoryDaysConstants->find(pair.first)->second;
 					total += finalValues[pair.first];
@@ -70,12 +66,14 @@ void CrimePredictor::predictCrime(DataManager *dataManager) {
 				total = 1;
 			}
 
+			//Dump predictions
 			fileDumper->dumpPrediction(crime->mId, finalValues, total);
 		
 			//delete the crime pointer which dissappears after this scope (not the parcel since its from the DataManager which is currently used and it will be deleted on ~DataManager)
 			delete crime;
 		}
 
+		//Since the buffer could still hold data not flushed, flush the remains
 		fileDumper->flushBuffer();
 	}
 

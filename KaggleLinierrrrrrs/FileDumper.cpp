@@ -18,8 +18,8 @@ Using things this way, times are:
 
 //Dont change
 FileDumper::FileDumper() : count(0) {
-	dumpFile.open("dump.csv", std::ofstream::out | std::ofstream::app);
-	//dumpHeaders();
+	dumpFile.open("dump.csv", std::ofstream::out | std::ofstream::trunc);
+	dumpHeaders();
 }
 
 //Dont change
@@ -44,7 +44,7 @@ void FileDumper::dumpPrediction(std::string& id, std::map<std::string, double>& 
 
 //Dont change
 void FileDumper::flushBuffer() {
-	std::cout << "flushing a set of " << count << "\n";
+	std::cout << "Flushing a set of " << count << "\n";
 	dumpFile << buffer.str();
 	buffer.clear();
 	buffer.str(std::string());
