@@ -2,16 +2,16 @@
 #include "Crime.h"
 
 Crime::Crime(DayTime dayTime, WorkingDuty workingDuty, std::string category,
-	std::string adress, double longitude, double latitude) :
+	Address adress, double longitude, double latitude) :
 	mDayTime(dayTime), mWorkingDuty(workingDuty), mCategory(category),
-	mAdress(adress), mLatitude(latitude),
+	mAddress(adress), mLatitude(latitude),
 	mLongitude(longitude) {
 }
 
 Crime::Crime(std::string id, DayTime dayTime, WorkingDuty workingDuty,
-	std::string adress, double longitude, double latitude) :
+	Address adress, double longitude, double latitude) :
 	mId(id), mDayTime(dayTime), mWorkingDuty(workingDuty),
-	mAdress(adress), mLatitude(latitude),
+	mAddress(adress), mLatitude(latitude),
 	mLongitude(longitude) {
 }
 

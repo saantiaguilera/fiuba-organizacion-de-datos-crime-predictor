@@ -7,12 +7,14 @@ private:
 	
 public:
 	Crime();
-	Crime(DayTime dayTime, WorkingDuty workingDuty, std::string category, std::string address, double longitude, double latitude);
-	Crime(std::string id, DayTime dayTime, WorkingDuty workingDuty, std::string address, double longitude, double latitude);
+	Crime(DayTime dayTime, WorkingDuty workingDuty, std::string category, Address address, double longitude, double latitude);
+	Crime(std::string id, DayTime dayTime, WorkingDuty workingDuty, Address address, double longitude, double latitude);
 	~Crime();
 	void printValues();
 	//Fields: "date" "hour" "Category" "DayOfWeek" "Address" "X" "Y"
-	std::string mCategory, mAdress, mId;
-	int mDayTime, mWorkingDuty;
+	std::string mCategory, mId;
+	Address mAddress;
+	WorkingDuty mWorkingDuty;
+	DayTime mDayTime;
 	double mLatitude, mLongitude;
 };

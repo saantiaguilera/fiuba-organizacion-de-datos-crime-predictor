@@ -72,6 +72,11 @@ Crime* CrimeParser::createCrimeFromCSVChunk(const std::string & dataChunk) {
 		}
 	}
 
+	//Set the type of address
+	Address typeOfAddress = IN_BETWEEN_STREETS;
+	if (address.find("/") != std::string::npos)
+		typeOfAddress = IN_CORNER;
+
 	//Set the working duty
 	WorkingDuty typeOfHour = WORKING_DUTY_OFF;
 	std::string onlyHour = hour.substr(1, 2);
@@ -81,7 +86,7 @@ Crime* CrimeParser::createCrimeFromCSVChunk(const std::string & dataChunk) {
 	//Remove "" from categories
 	category = category.substr(1, category.length() - 2);
 
-	return new Crime(typeOfDay, typeOfHour, category, address, std::stod(x), std::stod(y));
+	return new Crime(typeOfDay, typeOfHour, category, typeOfAddress, std::stod(x), std::stod(y));
 }
 
 bool CrimeParser::readFileWithManager(DataManager* dataManager)

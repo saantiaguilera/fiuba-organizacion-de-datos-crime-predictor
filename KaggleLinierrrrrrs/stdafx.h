@@ -13,7 +13,6 @@
 #include <istream>
 #include <vector>
 #include <sstream>
-#include <chrono>
 #include "CategoryConstantsManage.h"
 
 #define kMinLatitude 37.7074870000000
@@ -26,6 +25,7 @@
 
 enum DayTime { DAY_FROM_WEEK = 0, DAY_FROM_WEEKEND = 1 };
 enum WorkingDuty { WORKING_DUTY = 0, WORKING_DUTY_OFF = 1 };
+enum Address { IN_BETWEEN_STREETS = 0, IN_CORNER = 1 };
 
 //#define CASES_TO_PREDICT 200
 //#define CASES_TO_PARSE 5000

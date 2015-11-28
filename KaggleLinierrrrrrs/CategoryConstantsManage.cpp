@@ -11,130 +11,92 @@ CategoryConstantsManage::CategoryConstantsManage() {
 CategoryConstantsManage::~CategoryConstantsManage() {
 }
 
+
 void CategoryConstantsManage::createWorkingDutyCategoryMap() {
-	workingDutyCategoryConstants["ARSON"] = 26;
-	workingDutyCategoryConstants["ASSAULT"] = 43;
-	workingDutyCategoryConstants["BAD CHECKS"] = 66;
-	workingDutyCategoryConstants["BRIBERY"] = 48;
-	workingDutyCategoryConstants["BURGLARY"] = 45;
-	workingDutyCategoryConstants["DISORDERLY CONDUCT"] = 35;
-	workingDutyCategoryConstants["DRIVING UNDER THE INFLUENCE"] = 12;
-	workingDutyCategoryConstants["DRUG/NARCOTIC"] = 54;
+	workingDutyCategoryConstants["ARSON"] = 26.1732;
+	workingDutyCategoryConstants["ASSAULT"] = 43.2216;
+	workingDutyCategoryConstants["BAD CHECKS"] = 66.2562;
+	workingDutyCategoryConstants["BRIBERY"] = 48.7509;
+	workingDutyCategoryConstants["BURGLARY"] = 44.7313;
+	workingDutyCategoryConstants["DISORDERLY CONDUCT"] = 34.6065;
+	workingDutyCategoryConstants["DRIVING UNDER THE INFLUENCE"] = 11.5961;
+	workingDutyCategoryConstants["DRUG/NARCOTIC"] = 54.3699;
 	workingDutyCategoryConstants["DRUNKENNESS"] = 30;
-	workingDutyCategoryConstants["EMBEZZLEMENT"] = 57;
-	workingDutyCategoryConstants["EXTORTION"] = 53;
-	workingDutyCategoryConstants["FAMILY OFFENSES"] = 57;
-	workingDutyCategoryConstants["FORGERY/COUNTERFEITING"] = 62;
-	workingDutyCategoryConstants["FRAUD"] = 54;
-	workingDutyCategoryConstants["GAMBLING"] = 64;
-	workingDutyCategoryConstants["KIDNAPPING"] = 38;
-	workingDutyCategoryConstants["LARCENY/THEFT"] = 46;
-	workingDutyCategoryConstants["LIQUOR LAWS"] = 47;
-	workingDutyCategoryConstants["LOITERING"] = 42;
-	workingDutyCategoryConstants["MISSING PERSON"] = 52;
-	workingDutyCategoryConstants["NON-CRIMINAL"] = 52;
-	workingDutyCategoryConstants["OTHER OFFENSES"] = 48;
-	workingDutyCategoryConstants["PORNOGRAPHY/OBSCENE MAT"] = 55;
-	workingDutyCategoryConstants["PROSTITUTION"] = 14;
-	workingDutyCategoryConstants["RECOVERED VEHICLE"] = 52;
-	workingDutyCategoryConstants["ROBBERY"] = 33;
-	workingDutyCategoryConstants["RUNAWAY"] = 47;
-	workingDutyCategoryConstants["SECONDARY CODES"] = 43;
-	workingDutyCategoryConstants["SEX OFFENSES FORCIBLE"] = 36;
+	workingDutyCategoryConstants["EMBEZZLEMENT"] = 56.518;
+	workingDutyCategoryConstants["EXTORTION"] = 53.125;
+	workingDutyCategoryConstants["FAMILY OFFENSES"] = 57.4338;
+	workingDutyCategoryConstants["FORGERY/COUNTERFEITING"] = 62.2962;
+	workingDutyCategoryConstants["FRAUD"] = 54.002;
+	workingDutyCategoryConstants["GAMBLING"] = 64.3836;
+	workingDutyCategoryConstants["KIDNAPPING"] = 38.0607;
+	workingDutyCategoryConstants["LARCENY/THEFT"] = 46.3871;
+	workingDutyCategoryConstants["LIQUOR LAWS"] = 47.031;
+	workingDutyCategoryConstants["LOITERING"] = 41.9592;
+	workingDutyCategoryConstants["MISSING PERSON"] = 51.7142;
+	workingDutyCategoryConstants["NON-CRIMINAL"] = 52.1516;
+	workingDutyCategoryConstants["OTHER OFFENSES"] = 47.6455;
+	workingDutyCategoryConstants["PORNOGRAPHY/OBSCENE MAT"] = 54.5455;
+	workingDutyCategoryConstants["PROSTITUTION"] = 13.8295;
+	workingDutyCategoryConstants["RECOVERED VEHICLE"] = 52.1033;
+	workingDutyCategoryConstants["ROBBERY"] = 32.8652;
+	workingDutyCategoryConstants["RUNAWAY"] = 46.5057;
+	workingDutyCategoryConstants["SECONDARY CODES"] = 43.1347;
+	workingDutyCategoryConstants["SEX OFFENSES FORCIBLE"] = 36.2124;
 	workingDutyCategoryConstants["SEX OFFENSES NON FORCIBLE"] = 50;
-	workingDutyCategoryConstants["STOLEN PROPERTY"] = 48;
-	workingDutyCategoryConstants["SUICIDE"] = 47;
-	workingDutyCategoryConstants["SUSPICIOUS OCC"] = 50;
+	workingDutyCategoryConstants["STOLEN PROPERTY"] = 47.8634;
+	workingDutyCategoryConstants["SUICIDE"] = 47.2441;
+	workingDutyCategoryConstants["SUSPICIOUS OCC"] = 50.3215;
 	workingDutyCategoryConstants["TREA"] = 50;
-	workingDutyCategoryConstants["TRESPASS"] = 46;
-	workingDutyCategoryConstants["VANDALISM"] = 34;
-	workingDutyCategoryConstants["VEHICLE THEFT"] = 37;
-	workingDutyCategoryConstants["WARRANTS"] = 50;
-	workingDutyCategoryConstants["WEAPON LAWS"] = 44;
+	workingDutyCategoryConstants["TRESPASS"] = 46.3008;
+	workingDutyCategoryConstants["VANDALISM"] = 33.6344;
+	workingDutyCategoryConstants["VEHICLE THEFT"] = 36.5055;
+	workingDutyCategoryConstants["WARRANTS"] = 49.9242;
+	workingDutyCategoryConstants["WEAPON LAWS"] = 43.5885;
 }
 
 void CategoryConstantsManage::createWorkingOffCategoryMap() {
-	workingOffCategoryConstants["ARSON"] = 74;
-	workingOffCategoryConstants["ASSAULT"] = 57;
-	workingOffCategoryConstants["BAD CHECKS"] = 34;
-	workingOffCategoryConstants["BRIBERY"] = 52;
-	workingOffCategoryConstants["BURGLARY"] = 55;
-	workingOffCategoryConstants["DISORDERLY CONDUCT"] = 65;
-	workingOffCategoryConstants["DRIVING UNDER THE INFLUENCE"] = 88;
-	workingOffCategoryConstants["DRUG/NARCOTIC"] = 46;
+	workingOffCategoryConstants["ARSON"] = 73.8268;
+	workingOffCategoryConstants["ASSAULT"] = 56.7784;
+	workingOffCategoryConstants["BAD CHECKS"] = 33.7438;
+	workingOffCategoryConstants["BRIBERY"] = 52.2491;
+	workingOffCategoryConstants["BURGLARY"] = 55.2687;
+	workingOffCategoryConstants["DISORDERLY CONDUCT"] = 65.3935;
+	workingOffCategoryConstants["DRIVING UNDER THE INFLUENCE"] = 88.4039;
+	workingOffCategoryConstants["DRUG/NARCOTIC"] = 45.6301;
 	workingOffCategoryConstants["DRUNKENNESS"] = 70;
-	workingOffCategoryConstants["EMBEZZLEMENT"] = 43;
-	workingOffCategoryConstants["EXTORTION"] = 47;
-	workingOffCategoryConstants["FAMILY OFFENSES"] = 43;
-	workingOffCategoryConstants["FORGERY/COUNTERFEITING"] = 38;
-	workingOffCategoryConstants["FRAUD"] = 46;
-	workingOffCategoryConstants["GAMBLING"] = 36;
-	workingOffCategoryConstants["KIDNAPPING"] = 62;
-	workingOffCategoryConstants["LARCENY/THEFT"] = 54;
-	workingOffCategoryConstants["LIQUOR LAWS"] = 53;
-	workingOffCategoryConstants["LOITERING"] = 58;
-	workingOffCategoryConstants["MISSING PERSON"] = 48;
-	workingOffCategoryConstants["NON-CRIMINAL"] = 48;
-	workingOffCategoryConstants["OTHER OFFENSES"] = 52;
-	workingOffCategoryConstants["PORNOGRAPHY/OBSCENE MAT"] = 45;
-	workingOffCategoryConstants["PROSTITUTION"] = 86;
-	workingOffCategoryConstants["RECOVERED VEHICLE"] = 48;
-	workingOffCategoryConstants["ROBBERY"] = 67;
-	workingOffCategoryConstants["RUNAWAY"] = 53;
-	workingOffCategoryConstants["SECONDARY CODES"] = 57;
-	workingOffCategoryConstants["SEX OFFENSES FORCIBLE"] = 64;
+	workingOffCategoryConstants["EMBEZZLEMENT"] = 43.482;
+	workingOffCategoryConstants["EXTORTION"] = 46.875;
+	workingOffCategoryConstants["FAMILY OFFENSES"] = 42.5662;
+	workingOffCategoryConstants["FORGERY/COUNTERFEITING"] = 37.7038;
+	workingOffCategoryConstants["FRAUD"] = 45.998;
+	workingOffCategoryConstants["GAMBLING"] = 35.6164;
+	workingOffCategoryConstants["KIDNAPPING"] = 61.9393;
+	workingOffCategoryConstants["LARCENY/THEFT"] = 53.6129;
+	workingOffCategoryConstants["LIQUOR LAWS"] = 52.969;
+	workingOffCategoryConstants["LOITERING"] = 58.0408;
+	workingOffCategoryConstants["MISSING PERSON"] = 48.2858;
+	workingOffCategoryConstants["NON-CRIMINAL"] = 47.8484;
+	workingOffCategoryConstants["OTHER OFFENSES"] = 52.3545;
+	workingOffCategoryConstants["PORNOGRAPHY/OBSCENE MAT"] = 45.4545;
+	workingOffCategoryConstants["PROSTITUTION"] = 86.1705;
+	workingOffCategoryConstants["RECOVERED VEHICLE"] = 47.8967;
+	workingOffCategoryConstants["ROBBERY"] = 67.1348;
+	workingOffCategoryConstants["RUNAWAY"] = 53.4943;
+	workingOffCategoryConstants["SECONDARY CODES"] = 56.8653;
+	workingOffCategoryConstants["SEX OFFENSES FORCIBLE"] = 63.7876;
 	workingOffCategoryConstants["SEX OFFENSES NON FORCIBLE"] = 50;
-	workingOffCategoryConstants["STOLEN PROPERTY"] = 52;
-	workingOffCategoryConstants["SUICIDE"] = 53;
-	workingOffCategoryConstants["SUSPICIOUS OCC"] = 50;
+	workingOffCategoryConstants["STOLEN PROPERTY"] = 52.1366;
+	workingOffCategoryConstants["SUICIDE"] = 52.7559;
+	workingOffCategoryConstants["SUSPICIOUS OCC"] = 49.6785;
 	workingOffCategoryConstants["TREA"] = 50;
-	workingOffCategoryConstants["TRESPASS"] = 54;
-	workingOffCategoryConstants["VANDALISM"] = 66;
-	workingOffCategoryConstants["VEHICLE THEFT"] = 63;
-	workingOffCategoryConstants["WARRANTS"] = 50;
-	workingOffCategoryConstants["WEAPON LAWS"] = 56;
+	workingOffCategoryConstants["TRESPASS"] = 53.6992;
+	workingOffCategoryConstants["VANDALISM"] = 66.3656;
+	workingOffCategoryConstants["VEHICLE THEFT"] = 63.4945;
+	workingOffCategoryConstants["WARRANTS"] = 50.0758;
+	workingOffCategoryConstants["WEAPON LAWS"] = 56.4115;
 }
 
 void CategoryConstantsManage::createWeekDayCategoryMap() {
-	weekDayCategoryConstants["ARSON"] = 50;
-	weekDayCategoryConstants["ASSAULT"] = 46;
-	weekDayCategoryConstants["BAD CHECKS"] = 67;
-	weekDayCategoryConstants["BRIBERY"] = 50;
-	weekDayCategoryConstants["BURGLARY"] = 55;
-	weekDayCategoryConstants["DISORDERLY CONDUCT"] = 50;
-	weekDayCategoryConstants["DRIVING UNDER THE INFLUENCE"] = 37;
-	weekDayCategoryConstants["DRUG/NARCOTIC"] = 56;
-	weekDayCategoryConstants["DRUNKENNESS"] = 39;
-	weekDayCategoryConstants["EMBEZZLEMENT"] = 60;
-	weekDayCategoryConstants["EXTORTION"] = 51;
-	weekDayCategoryConstants["FAMILY OFFENSES"] = 57;
-	weekDayCategoryConstants["FORGERY/COUNTERFEITING"] = 62;
-	weekDayCategoryConstants["FRAUD"] = 54;
-	weekDayCategoryConstants["GAMBLING"] = 57;
-	weekDayCategoryConstants["KIDNAPPING"] = 46;
-	weekDayCategoryConstants["LARCENY/THEFT"] = 50;
-	weekDayCategoryConstants["LIQUOR LAWS"] = 51;
-	weekDayCategoryConstants["LOITERING"] = 55;
-	weekDayCategoryConstants["MISSING PERSON"] = 52;
-	weekDayCategoryConstants["NON-CRIMINAL"] = 50;
-	weekDayCategoryConstants["OTHER OFFENSES"] = 53;
-	weekDayCategoryConstants["PORNOGRAPHY/OBSCENE MAT"] = 64;
-	weekDayCategoryConstants["PROSTITUTION"] = 62;
-	weekDayCategoryConstants["RECOVERED VEHICLE"] = 60;
-	weekDayCategoryConstants["ROBBERY"] = 50;
-	weekDayCategoryConstants["RUNAWAY"] = 55;
-	weekDayCategoryConstants["SECONDARY CODES"] = 48;
-	weekDayCategoryConstants["SEX OFFENSES FORCIBLE"] = 47;
-	weekDayCategoryConstants["SEX OFFENSES NON FORCIBLE"] = 54;
-	weekDayCategoryConstants["STOLEN PROPERTY"] = 53;
-	weekDayCategoryConstants["SUICIDE"] = 51;
-	weekDayCategoryConstants["SUSPICIOUS OCC"] = 53;
-	weekDayCategoryConstants["TREA"] = 44;
-	weekDayCategoryConstants["TRESPASS"] = 53;
-	weekDayCategoryConstants["VANDALISM"] = 46;
-	weekDayCategoryConstants["VEHICLE THEFT"] = 49;
-	weekDayCategoryConstants["WARRANTS"] = 54;
-	weekDayCategoryConstants["WEAPON LAWS"] = 51;
 }
 
 void CategoryConstantsManage::createWeekendCategoryMap() {
@@ -177,4 +139,12 @@ void CategoryConstantsManage::createWeekendCategoryMap() {
 	weekendCategoryConstants["VEHICLE THEFT"] = 51;
 	weekendCategoryConstants["WARRANTS"] = 46;
 	weekendCategoryConstants["WEAPON LAWS"] = 49;
+}
+
+void CategoryConstantsManage::createStreetCornerCategoryMap() {
+
+}
+
+void CategoryConstantsManage::createStreetNonCornerCategoryMap() {
+
 }

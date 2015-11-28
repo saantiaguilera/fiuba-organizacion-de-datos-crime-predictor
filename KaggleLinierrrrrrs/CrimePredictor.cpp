@@ -41,28 +41,28 @@ void CrimePredictor::predictCrime(DataManager *dataManager) {
 			std::map<std::string, double> finalValues;
 			std::map<std::string, float>* categoryHourConstants;
 			std::map<std::string, float>* categoryDaysConstants;
+			std::map<std::string, float>* categoryStreetConstants;
 
-			if (crime->mWorkingDuty == WORKING_DUTY) {
+			if (crime->mWorkingDuty == WORKING_DUTY) 
 				categoryHourConstants = &categoryConstantsManager->workingDutyCategoryConstants;
-			}
-			else {
-				categoryHourConstants = &categoryConstantsManager->workingOffCategoryConstants;
-			}
+			else categoryHourConstants = &categoryConstantsManager->workingOffCategoryConstants;
+			
 
 			if (crime->mDayTime == DAY_FROM_WEEK)
-			{
 				categoryDaysConstants = &categoryConstantsManager->weekDayCategoryConstants;
-			}
-			else
-			{
-				categoryDaysConstants = &categoryConstantsManager->weekendCategoryConstants;
-			}
+			else categoryDaysConstants = &categoryConstantsManager->weekendCategoryConstants;
+
+			if (crime->mAddress == IN_CORNER) 
+				categoryStreetConstants = &categoryConstantsManager->streetCornerCategoryConstants;
+			else categoryStreetConstants = &categoryConstantsManager->streetNonCornerCategoryConstants;
 
 			double total = 0;
 			if (parcel != NULL) {
-				double sizeOfParcel = parcel->crimes.size() == 0 ? 1 : parcel->crimes.size();
+				double sizeOfParcel = parcel->crimes.size();
+				if (sizeOfParcel == 0) sizeOfParcel = 1;
+
 				for (auto const &pair : parcel->crimesCountMap) {
-					finalValues[pair.first] = (pair.second / sizeOfParcel) * categoryHourConstants->find(pair.first)->second * categoryDaysConstants->find(pair.first)->second;
+					finalValues[pair.first] = (pair.second / sizeOfParcel) * categoryHourConstants->find(pair.first)->second * categoryDaysConstants->find(pair.first)->second * categoryStreetConstants->find(pair.first)->second;
 					total += finalValues[pair.first];
 				}
 			}
@@ -160,5 +160,10 @@ Crime* CrimePredictor::createCrimeFromCSVChunk(const std::string & dataChunk) {
 	if (std::stoi(onlyHour) < 18 && std::stoi(onlyHour) >= 9)
 		typeOfHour = WORKING_DUTY;
 
-	return new Crime(id, typeOfDay, typeOfHour, address, std::stod(x), std::stod(y));
+	//Set the type of address
+	Address typeOfAddress = IN_BETWEEN_STREETS;
+	if (address.find("/") != std::string::npos)
+		typeOfAddress = IN_CORNER;
+
+	return new Crime(id, typeOfDay, typeOfHour, typeOfAddress, std::stod(x), std::stod(y));
 }
