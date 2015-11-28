@@ -13,8 +13,6 @@ public:
 	DataManager();
 	~DataManager();
 	void addCrimeToMatrix(Crime* crime);
-	 int numberOfCrimesAddedToMatrix;
-	 int numberOfCrimesOutOfMatrix;
 	 Parcel* matrix[kSanFranciscoMatrixRowNumber][kSanFranciscoMatrixColNumber];
 	 Parcel* DataManager::getParcelOfCrime(Crime *crime);
 };

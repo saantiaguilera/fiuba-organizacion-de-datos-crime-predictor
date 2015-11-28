@@ -31,8 +31,6 @@ void CrimePredictor::predictCrime(DataManager *dataManager) {
 
 		//Iterate over each line of the file (and, for testing purposes, only the first 5 of them)
 		while (std::getline(file, currentLine)) {
-			//Clean stuff
-
 			//Get crime and parcel asociated
 			Crime* crime = this->createCrimeFromCSVChunk(currentLine);
 
@@ -53,7 +51,7 @@ void CrimePredictor::predictCrime(DataManager *dataManager) {
 			//Create percentages based on data we have
 			double total = 0;
 			if (parcel != NULL) {
-				double sizeOfParcel = parcel->crimes.size();
+				double sizeOfParcel = parcel->totalCrimes;
 				if (sizeOfParcel == 0)
 					sizeOfParcel = 1;
 
@@ -78,15 +76,6 @@ void CrimePredictor::predictCrime(DataManager *dataManager) {
 	}
 
 	delete fileDumper;
-}
-
-void CrimePredictor::getDataForCrime(Crime *currentCrime, Parcel *parcel, long double &maxDistance) {
-	for (Crime* crime : parcel->crimes) {
-		//Get the max distance
-		long double distance = sqrt(pow(crime->mLatitude - currentCrime->mLatitude, 2) + pow(crime->mLongitude - currentCrime->mLongitude, 2));
-		if (distance > maxDistance)
-			maxDistance = distance;
-	}
 }
 
 Crime* CrimePredictor::createCrimeFromCSVChunk(const std::string & dataChunk) {

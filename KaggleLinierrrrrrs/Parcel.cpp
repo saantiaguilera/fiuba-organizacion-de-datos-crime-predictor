@@ -1,13 +1,14 @@
 #include "stdafx.h"
 #include "Parcel.h"
 
-Parcel::Parcel(){
+Parcel::Parcel() {
+	totalCrimes = 0;
 }
 
 Parcel::~Parcel()
 {
-	for (Crime* crime : crimes)
-		delete crime;
+	/*	for (Crime* crime : crimes)
+	delete crime;*/
 }
 
 void Parcel::addCrime(Crime* crime)
@@ -20,11 +21,17 @@ void Parcel::addCrime(Crime* crime)
 	{
 		crimesCountMap[crime->mCategory]++;
 	}
-	crimes.push_back(crime);
+	++totalCrimes;
+
+	//Remove this line and uncomment whats commented in here and the .h if you want to use again vector. Error was thrown in predicting crime #664733
+	//Because the vector exceeded its available size (we should use list instead of vector). But since its slower and we are not using it for anything in this branch, i removed it
+
+	delete crime;
+	//	crimes.push_back(crime);
 }
 
-int Parcel::getCrimesCategoryCount(std::string category)
+long Parcel::getCrimesCategoryCount(std::string category)
 {
-	int number = crimesCountMap[category];
+	long number = crimesCountMap[category];
 	return number;
 }
