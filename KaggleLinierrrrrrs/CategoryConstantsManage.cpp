@@ -214,6 +214,8 @@ void CategoryConstantsManage::createStreetCornerCategoryMap() {
 	streetCornerCategoryConstants["STOLEN PROPERTY"] = 13.0439573;
 	streetCornerCategoryConstants["SUICIDE"] = 1.7769003;
 	streetCornerCategoryConstants["SUSPICIOUS OCC"] = 9.10436596;
+	//TODO VER ESTA DE ABAJO
+	streetCornerCategoryConstants["TREA"] = 1;
 	streetCornerCategoryConstants["TRESPASS"] = 2.41752187;
 	streetCornerCategoryConstants["VANDALISM"] = 11.0789388;
 	streetCornerCategoryConstants["VEHICLE THEFT"] = 18.2082725;
@@ -255,6 +257,8 @@ void CategoryConstantsManage::createStreetNonCornerCategoryMap() {
 	streetNonCornerCategoryConstants["STOLEN PROPERTY"] = 86.9560427;
 	streetNonCornerCategoryConstants["SUICIDE"] = 98.2230997;
 	streetNonCornerCategoryConstants["SUSPICIOUS OCC"] = 90.895634;
+	//TODO VER ESTA DE ABAJO
+	streetNonCornerCategoryConstants["TREA"] = 100;
 	streetNonCornerCategoryConstants["TRESPASS"] = 97.5824781;
 	streetNonCornerCategoryConstants["VANDALISM"] = 88.9210612;
 	streetNonCornerCategoryConstants["VEHICLE THEFT"] = 81.7917275;
