@@ -37,12 +37,12 @@ void CrimePredictor::predictCrime(DataManager *dataManager) {
 			Crime* crime = this->createCrimeFromCSVChunk(currentLine);
 
 			Parcel* parcel = dataManager->getParcelOfCrime(crime);
-			
+
 			std::map<std::string, double> finalValues;
 			std::map<std::string, float>* categoryHourConstants;
 			std::map<std::string, float>* categoryDaysConstants;
 
-			if (crime->mWorkingDuty==WORKING_DUTY) {
+			if (crime->mWorkingDuty == WORKING_DUTY) {
 				categoryHourConstants = &categoryConstantsManager->workingDutyCategoryConstants;
 			}
 			else {
@@ -59,10 +59,15 @@ void CrimePredictor::predictCrime(DataManager *dataManager) {
 			}
 
 			double total = 0;
-			const double sizeOfParcel = parcel->crimes.size();
-			for (auto const &pair : parcel->crimesCountMap) {
-				finalValues[pair.first] = (pair.second / sizeOfParcel) * categoryHourConstants->find(pair.first)->second * categoryDaysConstants->find(pair.first)->second;
-				total += finalValues[pair.first];
+			if (parcel != NULL) {
+				double sizeOfParcel = parcel->crimes.size() == 0 ? 1 : parcel->crimes.size();
+				for (auto const &pair : parcel->crimesCountMap) {
+					finalValues[pair.first] = (pair.second / sizeOfParcel) * categoryHourConstants->find(pair.first)->second * categoryDaysConstants->find(pair.first)->second;
+					total += finalValues[pair.first];
+				}
+			}
+			else {
+				total = 1;
 			}
 
 			fileDumper->dumpPrediction(crime->mId, finalValues, total);

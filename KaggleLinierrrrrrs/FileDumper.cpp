@@ -18,8 +18,8 @@ Using things this way, times are:
 
 //Dont change
 FileDumper::FileDumper() : count(0) {
-	dumpFile.open("dump.csv", std::ofstream::out | std::ofstream::trunc);
-	dumpHeaders();
+	dumpFile.open("dump.csv", std::ofstream::out | std::ofstream::app);
+	//dumpHeaders();
 }
 
 //Dont change
@@ -54,6 +54,9 @@ void FileDumper::flushBuffer() {
 //On each '0' goes the percentage for each category. See the HEADERS define to know the order. 
 //Dont change the structure or the COMMA / << / buffer / EOL things. Its optimized this way
 void FileDumper::addToBuffer(std::string& id, std::map<std::string, double>& values, double& total) {
+	if (total == 0)
+		total = 1;
+
 	buffer << id
 		<< COMMA
 		<< (values["ARSON"] / total)
