@@ -39,9 +39,9 @@ void CrimePredictor::predictCrime(DataManager *dataManager) {
 			Parcel* parcel = dataManager->getParcelOfCrime(crime);
 
 			std::map<std::string, double> finalValues;
-			std::map<std::string, float>* categoryHourConstants;
-			std::map<std::string, float>* categoryDaysConstants;
-			std::map<std::string, float>* categoryStreetConstants;
+			std::map<std::string, double>* categoryHourConstants;
+			std::map<std::string, double>* categoryDaysConstants;
+			std::map<std::string, double>* categoryStreetConstants;
 
 			if (crime->mWorkingDuty == WORKING_DUTY) 
 				categoryHourConstants = &categoryConstantsManager->workingDutyCategoryConstants;

@@ -14,10 +14,10 @@ private:
 public:
 	CategoryConstantsManage();
 	~CategoryConstantsManage();
-	std::map<std::string, float> workingDutyCategoryConstants;
-	std::map<std::string, float> workingOffCategoryConstants;
-	std::map<std::string, float> weekDayCategoryConstants;
-	std::map<std::string, float> weekendCategoryConstants;
-	std::map<std::string, float> streetCornerCategoryConstants;
-	std::map<std::string, float> streetNonCornerCategoryConstants;
+	std::map<std::string, double> workingDutyCategoryConstants;
+	std::map<std::string, double> workingOffCategoryConstants;
+	std::map<std::string, double> weekDayCategoryConstants;
+	std::map<std::string, double> weekendCategoryConstants;
+	std::map<std::string, double> streetCornerCategoryConstants;
+	std::map<std::string, double> streetNonCornerCategoryConstants;
 };

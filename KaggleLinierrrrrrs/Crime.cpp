@@ -26,7 +26,6 @@ void Crime::printValues() {
 	std::cout << "---------------CRIME--------------" << std::endl;
 	std::cout << "----------------------------------" << std::endl;
 	std::cout << "Category " << mCategory << std::endl;
-	std::cout << "Address " << mAdress << std::endl;
 	std::cout << "Latitude " << mLatitude << std::endl;
 	std::cout << "Longitude " << mLongitude << std::endl;
 }
