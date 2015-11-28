@@ -6,34 +6,26 @@
 #include "CrimePredictor.h"
 
 int main() {
-	long long startingMilis = (std::chrono::duration_cast< std::chrono::milliseconds >(std::chrono::system_clock::now().time_since_epoch())).count();
+	std::cout << "Starting to parse crimes, this might take a while" << std::endl;
 
 	DataManager *dataManager = new DataManager();
 	CrimeParser *crimeParser = new CrimeParser();
 	crimeParser->readFileWithManager(dataManager);
 	
-	std::cout << "##################################################" << std::endl;
-	std::cout << "##################################################" << std::endl;
-	std::cout << "Numero de crimenes ingresados a la matriz: " << dataManager->numberOfCrimesAddedToMatrix << std::endl;
-	std::cout << "Numero de crimenes no ingresados a la matriz: " << dataManager->numberOfCrimesOutOfMatrix << std::endl;
-	std::cout << "##################################################" << std::endl;
-	std::cout << "##################################################" << std::endl;
+	std::cout << "Finished parsing crimes, predictions are about to start, hold on tight" << std::endl;
 
 	//crimeParser->getCrimesHourFreq();
 	
 	CrimePredictor *crimePredictor = new CrimePredictor();
 	crimePredictor->predictCrime(dataManager);
 
+	std::cout << "Finished predicting all the crimes, horray ! Let me free some of the space we have just used" << std::endl;
+
 	delete crimeParser;
 	delete dataManager;
-	
-	long long endingMilis = (std::chrono::duration_cast< std::chrono::milliseconds >(std::chrono::system_clock::now().time_since_epoch())).count();
-	long long timeElapsed = (endingMilis - startingMilis) / 1000;
-	
-	std::cout << "##################################################" << std::endl;
-	std::cout << "##################################################" << std::endl;
-	std::cout << "Time elapsed (in seconds): " << timeElapsed << std::endl;
 
+	std::cout << "Done. Press a key to exit.." << std::endl;
+		
 	std::cin.get();
 
 	return 0;
