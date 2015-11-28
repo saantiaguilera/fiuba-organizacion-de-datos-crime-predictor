@@ -6,10 +6,11 @@
 
 class Parcel {
 public:
-	std::map<std::string, int> crimesCountMap;
+	std::map<std::string, long> crimesCountMap;
 	Parcel();
 	~Parcel();
-	std::vector<Crime*> crimes;
+	//std::vector<Crime*> crimes;
+	long totalCrimes;
 	void addCrime(Crime* crime);
-	int getCrimesCategoryCount(std::string category);
+	long getCrimesCategoryCount(std::string category);
 };

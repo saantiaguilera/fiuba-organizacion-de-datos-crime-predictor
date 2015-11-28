@@ -3,14 +3,11 @@
 
 DataManager::DataManager()
 {
-	//Both vars for testing purpose only,  remove when done.
-	numberOfCrimesAddedToMatrix = 0;
-	numberOfCrimesOutOfMatrix = 0;
 	for (int i = 0; i < kSanFranciscoMatrixColNumber; i++)
 	{
 		for (int k = 0; k < kSanFranciscoMatrixRowNumber; k++)
 		{
-			matrix[k][i] = new Parcel;
+			matrix[k][i] = new Parcel();
 		}
 	}
 }
@@ -52,16 +49,16 @@ int DataManager::getRowNumberForCrime(Crime *crime) {
 
 bool DataManager::coordinateIsValidForCrime(Crime* crime)
 {
-	if (crime->mLatitude <= kMaxLatitude && crime->mLatitude >= kMinLatitude && crime->mLongitude >= kMaxLongitude && crime->mLongitude <= kMinLongitude) {
-		numberOfCrimesAddedToMatrix++;
+	if (crime->mLatitude <= kMaxLatitude && crime->mLatitude >= kMinLatitude && crime->mLongitude >= kMaxLongitude && crime->mLongitude <= kMinLongitude) 
 		return true;
-	}
 	
-	numberOfCrimesOutOfMatrix++;
 	return false;
 }
 
 Parcel* DataManager::getParcelOfCrime(Crime *crime) {
+	if (!coordinateIsValidForCrime(crime))
+		return NULL;
+
 	int colNumber = this->getColNumberForCrime(crime);
 	int rowNumber = this->getRowNumberForCrime(crime);
 

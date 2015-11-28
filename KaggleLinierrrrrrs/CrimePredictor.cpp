@@ -29,6 +29,8 @@ void CrimePredictor::predictCrime(DataManager *dataManager) {
 		//First line is  the row indicator, skip it.
 		std::getline(file, currentLine);
 
+		long i = 0;
+
 		//Iterate over each line of the file (and, for testing purposes, only the first 5 of them)
 		while (std::getline(file, currentLine)) {
 			//Clean stuff
@@ -41,28 +43,28 @@ void CrimePredictor::predictCrime(DataManager *dataManager) {
 			std::map<std::string, double> finalValues;
 			std::map<std::string, double>* categoryHourConstants;
 			std::map<std::string, double>* categoryDaysConstants;
-			std::map<std::string, double>* categoryStreetConstants;
+			//std::map<std::string, double>* categoryStreetConstants;
 
-			if (crime->mWorkingDuty == WORKING_DUTY) 
+			if (crime->mWorkingDuty == WORKING_DUTY)
 				categoryHourConstants = &categoryConstantsManager->workingDutyCategoryConstants;
 			else categoryHourConstants = &categoryConstantsManager->workingOffCategoryConstants;
-			
 
 			if (crime->mDayTime == DAY_FROM_WEEK)
 				categoryDaysConstants = &categoryConstantsManager->weekDayCategoryConstants;
 			else categoryDaysConstants = &categoryConstantsManager->weekendCategoryConstants;
 
-			if (crime->mAddress == IN_CORNER) 
-				categoryStreetConstants = &categoryConstantsManager->streetCornerCategoryConstants;
+			/*if (crime->mAddress == IN_CORNER)
+			categoryStreetConstants = &categoryConstantsManager->streetCornerCategoryConstants;
 			else categoryStreetConstants = &categoryConstantsManager->streetNonCornerCategoryConstants;
+			*/
 
 			double total = 0;
 			if (parcel != NULL) {
-				double sizeOfParcel = parcel->crimes.size();
+				double sizeOfParcel = parcel->totalCrimes;
 				if (sizeOfParcel == 0) sizeOfParcel = 1;
 
 				for (auto const &pair : parcel->crimesCountMap) {
-					finalValues[pair.first] = (pair.second / sizeOfParcel) * categoryHourConstants->find(pair.first)->second * categoryDaysConstants->find(pair.first)->second * categoryStreetConstants->find(pair.first)->second;
+					finalValues[pair.first] = (pair.second / sizeOfParcel) * categoryHourConstants->find(pair.first)->second * categoryDaysConstants->find(pair.first)->second; //* categoryStreetConstants->find(pair.first)->second
 					total += finalValues[pair.first];
 				}
 			}
@@ -71,7 +73,8 @@ void CrimePredictor::predictCrime(DataManager *dataManager) {
 			}
 
 			fileDumper->dumpPrediction(crime->mId, finalValues, total);
-		
+
+			++i;
 			//delete the crime pointer which dissappears after this scope (not the parcel since its from the DataManager which is currently used and it will be deleted on ~DataManager)
 			delete crime;
 		}
@@ -80,15 +83,6 @@ void CrimePredictor::predictCrime(DataManager *dataManager) {
 	}
 
 	delete fileDumper;
-}
-
-void CrimePredictor::getDataForCrime(Crime *currentCrime, Parcel *parcel, long double &maxDistance) {
-	for (Crime* crime : parcel->crimes) {
-		//Get the max distance
-		long double distance = sqrt(pow(crime->mLatitude - currentCrime->mLatitude, 2) + pow(crime->mLongitude - currentCrime->mLongitude, 2));
-		if (distance > maxDistance)
-			maxDistance = distance;
-	}
 }
 
 Crime* CrimePredictor::createCrimeFromCSVChunk(const std::string & dataChunk) {
