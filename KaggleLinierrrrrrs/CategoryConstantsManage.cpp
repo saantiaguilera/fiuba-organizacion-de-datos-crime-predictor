@@ -6,6 +6,8 @@ CategoryConstantsManage::CategoryConstantsManage() {
 	createWorkingOffCategoryMap();
 	createWeekDayCategoryMap();
 	createWeekendCategoryMap();
+	createStreetCornerCategoryMap();
+	createStreetNonCornerCategoryMap();
 }
 
 CategoryConstantsManage::~CategoryConstantsManage() {
