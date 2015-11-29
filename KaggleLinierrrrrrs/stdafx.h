@@ -20,8 +20,8 @@
 #define kMinLongitude -122.3568150000000
 #define kMaxLongitude -122.5153430000000
 
-#define kSanFranciscoMatrixRowNumber 25
-#define kSanFranciscoMatrixColNumber 20
+#define kSanFranciscoMatrixRowNumber 20
+#define kSanFranciscoMatrixColNumber 15
 
 enum DayTime { DAY_FROM_WEEK = 0, DAY_FROM_WEEKEND = 1 };
 enum WorkingDuty { WORKING_DUTY = 0, WORKING_DUTY_OFF = 1 };
