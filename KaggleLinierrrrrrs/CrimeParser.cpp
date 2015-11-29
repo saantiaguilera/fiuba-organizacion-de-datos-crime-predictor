@@ -81,7 +81,11 @@ Crime* CrimeParser::createCrimeFromCSVChunk(const std::string & dataChunk) {
 	//Remove "" from categories
 	category = category.substr(1, category.length() - 2);
 
-	return new Crime(typeOfDay, typeOfHour, category, address, std::stod(x), std::stod(y));
+	//Set the type of address
+	Address addr = ADDRESS_IN_STREET;
+	if (address.find('/') != std::string::npos) addr = ADDRESS_IN_CORNER;
+
+	return new Crime(typeOfDay, typeOfHour, category, addr, std::stod(x), std::stod(y));
 }
 
 bool CrimeParser::readFileWithManager(DataManager* dataManager)

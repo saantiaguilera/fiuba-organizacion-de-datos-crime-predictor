@@ -147,5 +147,9 @@ Crime* CrimePredictor::createCrimeFromCSVChunk(const std::string & dataChunk) {
 	if (std::stoi(onlyHour) < 18 && std::stoi(onlyHour) >= 9)
 		typeOfHour = WORKING_DUTY;
 
-	return new Crime(id, typeOfDay, typeOfHour, address, std::stod(x), std::stod(y));
+	//Set the type of address
+	Address addr = ADDRESS_IN_STREET;
+	if (address.find('/') != std::string::npos) addr = ADDRESS_IN_CORNER;
+
+	return new Crime(id, typeOfDay, typeOfHour, addr, std::stod(x), std::stod(y));
 }

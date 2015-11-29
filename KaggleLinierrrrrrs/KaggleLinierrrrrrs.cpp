@@ -13,9 +13,7 @@ int main() {
 	crimeParser->readFileWithManager(dataManager);
 	
 	std::cout << "Finished parsing crimes, predictions are about to start, hold on tight" << std::endl;
-
-	//crimeParser->getCrimesHourFreq();
-	
+		
 	CrimePredictor *crimePredictor = new CrimePredictor();
 	crimePredictor->predictCrime(dataManager);
 
@@ -23,6 +21,7 @@ int main() {
 
 	delete crimeParser;
 	delete dataManager;
+	delete crimePredictor;
 
 	std::cout << "Done. Press a key to exit.." << std::endl;
 		
